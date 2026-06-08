@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Free Business Valuation | JMCG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f1e8d2;
+    --cream-2:#ece2c6;
+    --ink:#11332f;
+    --ink-2:#1a4641;
+    --ink-deep:#0c2723;
+    --muted:#5f7370;
+    --amber:#d99423;
+    --amber-2:#b97915;
+    --maxw:1200px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  /* ---------- atoms ---------- */
+  .display{ font-family:"Alfa Slab One", serif; font-weight:400; line-height:.92; text-transform:uppercase; }
+  .amp{ color:var(--amber); }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 48px; }
+  .band-ink{ background:var(--ink); color:var(--cream); }
+  .band-ink .display{ color:var(--cream); }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:11px;
+    font-family:"IBM Plex Mono", monospace; font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--amber-2);
+  }
+  .eyebrow::before{ content:""; width:26px; height:1.5px; background:currentColor; opacity:.8; }
+  .band-ink .eyebrow{ color:var(--amber); }
+
+  /* CTA pill */
+  .btn{
+    display:inline-flex; align-items:center; gap:13px;
+    background:var(--amber); color:#1a1306;
+    border:none; cursor:pointer; text-decoration:none;
+    font-family:"IBM Plex Sans", sans-serif; font-weight:700; font-size:17px;
+    padding:18px 34px; border-radius:999px;
+    box-shadow:0 14px 30px -10px rgba(217,148,35,.7);
+    transition:transform .14s ease, box-shadow .14s ease;
+    text-transform:uppercase; letter-spacing:.02em; white-space:nowrap;
+  }
+  .btn::after{ content:"→"; font-family:"IBM Plex Mono",monospace; font-weight:600; }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 20px 38px -10px rgba(217,148,35,.8); }
+  .btn.lg{ font-size:20px; padding:23px 46px; }
+
+  .micro{
+    font-family:"IBM Plex Mono", monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+    display:inline-flex; align-items:center; gap:12px; flex-wrap:wrap;
+  }
+  .micro .sep{ color:var(--amber); }
+  .band-ink .micro{ color:#9aa9a2; }
+
+  /* ---------- reveal ---------- */
+  @keyframes revealUp{ from{ opacity:0; transform:translateY(24px); } to{ opacity:1; transform:none; } }
+  .reveal.in{ animation:revealUp .7s cubic-bezier(.2,.7,.3,1) both; }
+  @media (prefers-reduced-motion: reduce){ .reveal.in{ animation:none; } }
+
+  /* ---------- announce bar ---------- */
+  .announce{
+    display:flex; align-items:center; justify-content:center; gap:14px; text-decoration:none;
+    background:var(--amber); color:#1a1306; padding:11px 24px; text-align:center;
+  }
+  .announce .newpill{
+    flex:none; background:var(--ink-deep); color:var(--cream);
+    font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:10.5px; letter-spacing:.16em; text-transform:uppercase;
+    padding:5px 10px; border-radius:999px;
+  }
+  .announce .atxt{ font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:14px; }
+  .announce .aarrow{ font-family:"IBM Plex Mono",monospace; font-weight:700; font-size:15px; }
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:var(--ink-deep); border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  header.site .wrap{ display:flex; align-items:center; gap:32px; height:78px; }
+  .logo{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .logo .mark{
+    font-family:"IBM Plex Mono", monospace; font-weight:600; font-size:14px; letter-spacing:.18em;
+    background:var(--amber); color:#1a1306; padding:9px 12px; line-height:1;
+  }
+  .logo .word{ font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#9aa9a2; }
+  header.site nav.links{ display:flex; align-items:center; gap:30px; margin-left:auto; }
+  header.site nav.links a{
+    text-decoration:none; color:#cbbf9f;
+    font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    transition:color .18s ease;
+  }
+  header.site nav.links a:hover{ color:var(--amber); }
+  header.site .hdr-cta{
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--amber); color:#1a1306; text-decoration:none;
+    font-family:"IBM Plex Sans",sans-serif; font-weight:700; font-size:13px; padding:13px 22px; letter-spacing:.02em; text-transform:uppercase;
+    border-radius:999px;
+    transition:transform .12s ease;
+  }
+  header.site .hdr-cta::after{ content:"→"; font-family:"IBM Plex Mono",monospace; }
+  header.site .hdr-cta:hover{ transform:translateY(-1px); }
+
+  /* ---------- HERO ---------- */
+  .hero{ background:var(--ink); color:var(--cream); position:relative; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(80% 70% at 92% -10%, rgba(217,148,35,.22), transparent 55%);
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size:62px 62px; mask-image:radial-gradient(70% 80% at 30% 20%, #000 20%, transparent 75%);
+  }
+  .hero .wrap{ position:relative; z-index:1; display:grid; grid-template-columns:1.05fr .95fr; gap:64px; align-items:center; padding-top:80px; padding-bottom:84px; }
+  .hero-copy .eyebrow{ color:#9aa9a2; margin-bottom:26px; }
+  .hero-copy .eyebrow::before{ background:var(--amber); opacity:1; }
+  .hero h1.display{ color:var(--cream); font-size:clamp(48px,4.6vw,76px); letter-spacing:-.01em; margin:0 0 24px; }
+  .hero h1 .amp{ color:var(--amber); }
+  .hero .sub{ font-size:21px; line-height:1.55; color:#ddd2b6; max-width:46ch; margin:0 0 36px; }
+  .hero .sub strong{ color:var(--cream); }
+  .hero .cta-line{ display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+  .hero .cta-stack{ display:inline-flex; flex-direction:column; align-items:center; }
+  .hero .cta-stack .micro{ justify-content:center; }
+  .hero .micro{ margin-top:20px; }
+  .hero .cred{
+    margin-top:38px; display:inline-flex; align-items:center; gap:18px; flex-wrap:wrap;
+    border-top:1px solid rgba(255,255,255,.14); padding-top:26px;
+  }
+  .hero .cred .stars{ color:var(--amber); font-size:17px; letter-spacing:3px; }
+  .hero .cred .txt{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#c8bfa3; }
+  .hero .cred .txt b{ color:var(--cream); }
+
+  /* hero photo (KPI board) */
+  .hero-visual{ position:relative; }
+  .hero-visual .photo{
+    position:relative; overflow:hidden; background:#222;
+    border:1.5px solid rgba(241,232,210,.25); box-shadow:18px 18px 0 rgba(0,0,0,.28);
+  }
+  .hero-visual .photo img{ display:block; width:100%; height:clamp(380px,42vw,500px); object-fit:cover; object-position:center 28%; }
+  .hero-visual .photo::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg, rgba(12,39,35,.35) 0%, transparent 30%, transparent 64%, rgba(12,39,35,.62) 100%);
+  }
+  .hero-visual .cap{
+    position:absolute; left:18px; bottom:18px; z-index:2;
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    background:rgba(12,39,35,.9); color:var(--cream); padding:9px 13px; border:1px solid rgba(241,232,210,.2);
+  }
+  .hero-visual .cap .lv{ width:7px; height:7px; border-radius:50%; background:var(--amber); }
+  .hero-visual .stamp{
+    position:absolute; right:-12px; top:26px; z-index:3; background:var(--amber); color:#1a1306;
+    font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:11px; letter-spacing:.14em; text-transform:uppercase; padding:9px 14px;
+    box-shadow:5px 5px 0 rgba(0,0,0,.3);
+  }
+
+  /* ---------- PARTNERS / REVIEWS ---------- */
+  .reviews{ background:var(--cream); color:var(--ink); padding:104px 0 110px; }
+  .reviews .head{ text-align:center; max-width:680px; margin:0 auto 56px; }
+  .reviews .eyebrow{ justify-content:center; margin-bottom:18px; }
+  .reviews .eyebrow::before{ display:none; }
+  .reviews h2.display{ color:var(--ink); font-size:clamp(36px,4vw,54px); line-height:1; margin:0 0 18px; }
+  .reviews h2.display .amp{ color:var(--amber-2); }
+  .reviews .trust{
+    display:inline-flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:11px;
+    font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+  }
+  .reviews .trust .stars{ color:var(--amber); letter-spacing:2px; }
+  .reviews .trust .d{ width:4px; height:4px; border-radius:50%; background:var(--amber); }
+  /* ---- carousel: 3 visible, shifts one at a time ---- */
+  .rev-viewport{ overflow:hidden; }
+  .rev-track{ display:flex; gap:26px; }
+  .rev-card{
+    flex:0 0 calc((100% - 52px) / 3); box-sizing:border-box; min-height:390px;
+    display:flex; flex-direction:column; align-items:flex-start; text-align:left;
+    background:#fbf6e6; border:1.5px solid rgba(17,51,47,.16);
+    box-shadow:8px 8px 0 rgba(17,51,47,.09);
+    padding:30px 30px 26px;
+  }
+  .rev-controls{ display:flex; align-items:center; justify-content:center; gap:24px; margin-top:44px; }
+  .rev-arrow{
+    width:48px; height:48px; flex:none; cursor:pointer; border:1.5px solid rgba(17,51,47,.28); background:transparent;
+    border-radius:50%; color:var(--ink); display:flex; align-items:center; justify-content:center;
+    font-family:"IBM Plex Mono",monospace; font-size:18px; transition:background .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .rev-arrow:hover{ background:var(--ink); color:var(--cream); border-color:var(--ink); }
+  .rev-dots{ display:flex; align-items:center; gap:9px; }
+  .rev-dots button{
+    width:9px; height:9px; padding:0; border:none; border-radius:50%; cursor:pointer;
+    background:rgba(17,51,47,.22); transition:transform .2s, background .2s;
+  }
+  .rev-dots button.active{ background:var(--amber); transform:scale(1.3); }
+  .rev-qmark{ font-family:"Alfa Slab One",serif; font-size:50px; line-height:.5; color:var(--amber); margin-bottom:8px; }
+  .rev-stars{ color:var(--amber); letter-spacing:3px; font-size:14px; margin-bottom:14px; }
+  .rev-text{ font-size:16px; line-height:1.55; color:var(--ink); margin:0 0 22px; text-wrap:pretty; }
+  .rev-text b{ font-weight:700; }
+  .rev-who{ display:flex; align-items:center; gap:13px; margin-top:auto; }
+  .rev-avatar{
+    width:46px; height:46px; flex:none; border-radius:50%; background:var(--ink); color:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Alfa Slab One",serif; font-size:18px;
+  }
+  .rev-card.partner{ border-color:var(--amber); box-shadow:8px 8px 0 rgba(217,148,35,.22); }
+  .rev-card.partner .rev-avatar{ background:var(--amber); color:#1a1306; }
+  .rev-name{ font-weight:700; font-size:16px; color:var(--ink); line-height:1.1; }
+  .rev-card.partner .rev-tag{ display:block; margin-top:4px; font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--amber-2); }
+  .rev-tag{ display:none; }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .howval{ padding:104px 0 110px; }
+  .howval .head{ text-align:center; max-width:680px; margin:0 auto 60px; }
+  .howval .eyebrow{ justify-content:center; margin-bottom:18px; }
+  .howval .eyebrow::before{ display:none; }
+  .howval h2.display{ color:var(--cream); font-size:clamp(36px,4vw,54px); line-height:1; margin:0; }
+  .howval h2.display .amp{ color:var(--amber); }
+  .vsteps{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1.5px solid rgba(255,255,255,.18); }
+  .vstep{ padding:44px 38px 48px; border-right:1.5px solid rgba(255,255,255,.18); }
+  .vstep:last-child{ border-right:none; }
+  .vstep .n{ font-family:"Alfa Slab One",serif; font-size:64px; line-height:.8; color:var(--amber); }
+  .vstep h3{ margin:24px 0 14px; font-family:"Alfa Slab One",serif; font-weight:400; font-size:22px; line-height:1.1; text-transform:uppercase; color:var(--cream); }
+  .vstep p{ margin:0; font-size:16px; line-height:1.6; color:#cbbf9f; text-wrap:pretty; }
+  .vstep p strong{ color:var(--cream); }
+  .howval .ctarow{ display:flex; flex-direction:column; align-items:center; gap:18px; margin-top:54px; }
+
+  /* ---------- ABOUT ---------- */
+  .about{ background:var(--cream); color:var(--ink); padding:104px 0 110px; }
+  .about .grid{ display:grid; grid-template-columns:.92fr 1.08fr; gap:64px; align-items:center; }
+  .about .photo{ position:relative; border:1.5px solid rgba(17,51,47,.16); box-shadow:16px 16px 0 rgba(17,51,47,.12); }
+  .about .photo img{ display:block; width:100%; height:520px; object-fit:cover; object-position:center 22%; }
+  .about .photo .stamp{ position:absolute; right:14px; top:14px; background:var(--amber); color:#1a1306; font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:8px 12px; }
+  .about .photo .cap{ position:absolute; left:0; bottom:0; background:var(--ink); color:var(--cream); font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; padding:9px 13px; }
+  .about .eyebrow{ margin-bottom:18px; }
+  .about h2.display{ color:var(--ink); font-size:clamp(34px,3.6vw,52px); line-height:.98; margin:0 0 28px; max-width:14ch; }
+  .about h2.display .amp{ color:var(--amber-2); }
+  .about .story p{ font-size:17.5px; line-height:1.66; color:#34453f; margin:0 0 18px; text-wrap:pretty; }
+  .about .story p:last-child{ margin-bottom:0; }
+  .about .story p strong{ color:var(--ink); font-weight:700; }
+  .about .about-cta{ margin-top:36px; }
+
+  /* ---------- WHY IT MATTERS ---------- */
+  .why{ padding:104px 0 110px; }
+  .why .head{ text-align:center; max-width:760px; margin:0 auto 54px; }
+  .why .eyebrow{ justify-content:center; margin-bottom:18px; }
+  .why .eyebrow::before{ display:none; }
+  .why h2.display{ color:var(--cream); font-size:clamp(36px,4.2vw,56px); line-height:1; margin:0; }
+  .why h2.display .amp{ color:var(--amber); }
+  .why-paths{ display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+  .why-path{ position:relative; border:1.5px solid rgba(255,255,255,.18); background:rgba(255,255,255,.03); padding:38px 36px 40px; }
+  .why-path .tag{ display:block; font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); margin-bottom:18px; }
+  .why-path h3{ margin:0 0 14px; font-family:"Alfa Slab One",serif; font-weight:400; font-size:26px; line-height:1.05; text-transform:uppercase; color:var(--cream); }
+  .why-path p{ margin:0; font-size:16.5px; line-height:1.62; color:#cbbf9f; text-wrap:pretty; }
+  .why-path p b{ color:var(--cream); }
+  .why-bridge{ margin-top:26px; padding:38px 44px; border:1.5px solid var(--amber); background:rgba(216,150,40,.08); display:flex; align-items:center; gap:30px; flex-wrap:wrap; }
+  .why-bridge .lbl{ flex:none; font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); }
+  .why-bridge p{ margin:0; flex:1; min-width:280px; font-size:24px; line-height:1.34; color:var(--cream); font-weight:600; text-wrap:pretty; }
+  .why-bridge p .amp{ color:var(--amber); }
+
+  /* ---------- WORTH / FINAL ---------- */
+  .worth{ position:relative; overflow:hidden; padding:120px 0 130px; text-align:center; }
+  .worth::before{ content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(90% 70% at 50% 0%, rgba(217,148,35,.26), transparent 60%); }
+  .worth .wrap{ position:relative; z-index:1; max-width:860px; }
+  .worth .eyebrow{ justify-content:center; margin-bottom:20px; }
+  .worth .eyebrow::before{ display:none; }
+  .worth h2.display{ color:var(--cream); font-size:clamp(44px,5.4vw,80px); line-height:.98; margin:0 0 22px; }
+  .worth h2.display .amp{ color:var(--amber); }
+  .worth .lead{ font-size:20px; line-height:1.6; color:#ddd2b6; max-width:52ch; margin:0 auto 44px; text-wrap:pretty; }
+  .worth .lead strong{ color:var(--cream); }
+  .worth-list{ list-style:none; margin:0 auto 46px; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1.5px solid rgba(255,255,255,.18); text-align:left; }
+  .worth-list li{ position:relative; padding:30px 28px 30px 54px; border-right:1.5px solid rgba(255,255,255,.18); font-size:16px; line-height:1.42; color:var(--cream); }
+  .worth-list li:last-child{ border-right:none; }
+  .worth-list li::before{ content:"→"; position:absolute; left:24px; top:30px; color:var(--amber); font-family:"IBM Plex Mono",monospace; font-weight:700; }
+  .worth .cta-wrap{ display:flex; flex-direction:column; align-items:center; gap:18px; }
+
+  /* ---------- footer ---------- */
+  footer{ background:var(--ink-deep); border-top:1px solid rgba(255,255,255,.1); padding:34px 0; }
+  footer .wrap{ display:flex; align-items:center; gap:14px; font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#9faea8; }
+  footer .mark{ font-family:"IBM Plex Mono", monospace; font-weight:600; font-size:12px; letter-spacing:.16em; background:var(--amber); color:#1a1306; padding:8px 11px; }
+  footer .spacer{ flex:1; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .wrap{ padding:0 28px; }
+    .hero .wrap{ grid-template-columns:1fr; gap:44px; padding-top:56px; padding-bottom:60px; }
+    .hero-visual{ order:2; }
+    .about .grid, .why-paths{ grid-template-columns:1fr; gap:38px; }
+    .vsteps, .worth-list{ grid-template-columns:1fr; }
+    .vstep{ border-right:none; border-bottom:1.5px solid rgba(255,255,255,.18); }
+    .vstep:last-child{ border-bottom:none; }
+    .worth-list li{ border-right:none; border-bottom:1.5px solid rgba(255,255,255,.18); }
+    .worth-list li:last-child{ border-bottom:none; }
+    .rev-viewport{ overflow:visible; }
+    .rev-track{ flex-direction:column; gap:24px; }
+    .rev-card{ flex:1 1 auto; height:auto; }
+    .rev-controls{ display:none; }
+    header.site nav.links{ display:none; }
+    .reviews, .howval, .about, .why{ padding:74px 0 78px; }
+    .worth{ padding:84px 0 92px; }
+  }
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#11332f"/>
+    <rect x="0" y="0" width="6" height="100" fill="#e8a635"/>
+    <text x="53" y="56" font-family="Georgia, serif" font-size="26" font-weight="900" text-anchor="middle" fill="#f1e8d2">JMCG</text>
+    <text x="53" y="76" font-family="monospace" font-size="5" letter-spacing="1.4" text-anchor="middle" fill="#d99423">FREE VALUATION</text>
+  </svg>
+</template>
+
+<!-- ANNOUNCEMENT BAR -->
+<a class="announce" href="#worth">
+  <span class="newpill">New</span>
+  <span class="atxt">What's your HVAC or plumbing business worth? Free 2-min valuation.</span>
+  <span class="aarrow">→</span>
+</a>
+
+<!-- HEADER -->
+<header class="site" id="siteHeader">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <span class="mark">JMCG</span>
+    </a>
+    <nav class="links">
+      <a href="#partners">Reviews</a>
+      <a href="#how">How It Works</a>
+      <a href="#about">About</a>
+      <a href="#why-it-matters">Why It Matters</a>
+    </nav>
+    <a class="hdr-cta" href="#worth">Get My Free Valuation</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">For HVAC &amp; Plumbing Owners</span>
+      <h1 class="display reveal">What's Your HVAC Business <span class="amp">Worth Right Now?</span></h1>
+      <p class="sub reveal">We've scaled our family HVAC shop to <strong>$15M+</strong>. Get a FREE business valuation with diagnostics, built by operators who've actually done it.</p>
+      <div class="cta-line reveal">
+        <div class="cta-stack">
+          <a class="btn lg" href="#worth">Get My Free Valuation</a>
+          <div class="micro"><span>No retainer</span><span class="sep">·</span><span>No obligation</span></div>
+        </div>
+      </div>
+      <div class="cred reveal">
+        <span class="stars">★★★★★</span>
+        <span class="txt">Trusted by HVAC &amp; plumbing owners <b>across the country</b></span>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="photo">
+        <img src="img/kpi-board.jpg" alt="A JMCG operator updating a KPI scoreboard with daily revenue and call metrics" />
+        <span class="cap">Family HVAC Business</span>
+      </div>
+      <span class="stamp">Scaling to $15M+</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS / REVIEWS ============ -->
+<section class="reviews" id="partners">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">What Owners Say</span>
+      <h2 class="display">Hear From Some Of Our <span class="amp">Partners.</span></h2>
+      <div class="trust"><span>Operators we've helped grow</span></div>
+    </div>
+
+    <div class="rev-viewport reveal">
+      <div class="rev-track" id="revTrack">
+      <article class="rev-card partner">
+        <div class="rev-qmark">&ldquo;</div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">I&rsquo;ve been with JMCG for over a year now, and the team has been <b>awesome every step of the way.</b> They really helped us tighten up execution and actually get things done.</p>
+        <div class="rev-who"><div class="rev-avatar">M</div><div><div class="rev-name">Mike</div></div></div>
+      </article>
+
+      <article class="rev-card">
+        <div class="rev-qmark">&ldquo;</div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">The team at JMCG is <b>the real deal.</b> They know what they&rsquo;re doing and made the whole thing easy from start to finish.</p>
+        <div class="rev-who"><div class="rev-avatar">A</div><div><div class="rev-name">Al</div></div></div>
+      </article>
+
+      <article class="rev-card partner">
+        <div class="rev-qmark">&ldquo;</div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text"><b>Huge shout-out</b> to JMCG, they helped me get everything off the ground from the very beginning.</p>
+        <div class="rev-who"><div class="rev-avatar">C</div><div><div class="rev-name">Caty</div></div></div>
+      </article>
+
+      <article class="rev-card">
+        <div class="rev-qmark">&ldquo;</div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">You guys have been <b>a tremendous help,</b> and it&rsquo;s a real testament to you and your team and what you&rsquo;re building. We appreciate everything you&rsquo;ve put into yourselves and into others, and I can&rsquo;t wait to see what you do next.</p>
+        <div class="rev-who"><div class="rev-avatar">N</div><div><div class="rev-name">Nick</div></div></div>
+      </article>
+
+      <article class="rev-card partner">
+        <div class="rev-qmark">&ldquo;</div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">Working with Caleb and the JMCG team for the past year and a half <b>has been an honor.</b> The responses from our clients have been phenomenal, and they&rsquo;ve truly helped these owners grow and bring their vision to life. Beyond the businesses, they&rsquo;re helping teams and families and changing lives, and I&rsquo;m excited to see the next chapter for the whole team.</p>
+        <div class="rev-who"><div class="rev-avatar">J</div><div><div class="rev-name">Joey</div></div></div>
+      </article>
+      </div>
+    </div>
+
+    <div class="rev-controls reveal">
+      <button class="rev-arrow" id="revPrev" aria-label="Previous reviews">&larr;</button>
+      <div class="rev-dots" id="revDots"></div>
+      <button class="rev-arrow" id="revNext" aria-label="Next reviews">&rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="howval band-ink" id="how">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">How It Works</span>
+      <h2 class="display">Your Valuation, In <span class="amp">3 Steps.</span></h2>
+    </div>
+    <div class="vsteps">
+      <div class="vstep reveal">
+        <div class="n">1</div>
+        <h3>Tell Us About Your Shop</h3>
+        <p>A <strong>2-minute intake</strong>: revenue, team size, the basics. No spreadsheets to dig up.</p>
+      </div>
+      <div class="vstep reveal">
+        <div class="n">2</div>
+        <h3>We Run Your Numbers</h3>
+        <p>We benchmark your revenue, close rate, average ticket and departments against shops we&rsquo;ve actually scaled, then use <strong>AI to run your numbers</strong> so your valuation comes back immediately.</p>
+      </div>
+      <div class="vstep reveal">
+        <div class="n">3</div>
+        <h3>You Get Your Estimated Valuation Immediately</h3>
+        <p>A clear valuation of what your business is worth <strong>today</strong>, and exactly where the value is hiding.</p>
+      </div>
+    </div>
+    <div class="ctarow reveal">
+      <a class="btn lg" href="#worth">Get My Free Valuation</a>
+      <div class="micro"><span>2-minute intake</span><span class="sep">·</span><span>No obligation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="grid">
+      <div class="photo reveal">
+        <img src="img/operator-furnace.jpg" alt="A JMCG operator in company gear, working on a furnace in the field" />
+        <span class="stamp">Scaling to $15M+</span>
+        <span class="cap">Family HVAC Business</span>
+      </div>
+      <div class="copy">
+        <span class="eyebrow reveal">Who You're Working With</span>
+        <h2 class="display reveal">We've Been in <span class="amp">Your Shoes.</span></h2>
+        <div class="story">
+          <p class="reveal">After helping grow our family HVAC company to more than <strong>$15 million in annual revenue</strong>, we saw firsthand what separates the businesses that stay stuck from the ones that continue to grow.</p>
+          <p class="reveal">Along the way, we spent time learning from some of the <strong>top-performing HVAC and plumbing companies in the country</strong>, studying how they market, operate, hire, sell, and scale.</p>
+          <p class="reveal">Today, we work with HVAC and plumbing business owners to implement those same proven strategies inside their companies, helping them <strong>increase revenue, improve profitability, and build more valuable businesses.</strong></p>
+        </div>
+        <div class="about-cta reveal">
+          <a class="btn" href="#worth">Get My Free Valuation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY IT MATTERS ============ -->
+<section class="why band-ink" id="why-it-matters">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Why It Matters</span>
+      <h2 class="display">Why Does Your <span class="amp">Valuation</span> Even Matter?</h2>
+    </div>
+    <div class="why-paths">
+      <div class="why-path reveal">
+        <span class="tag">Path 01 · Keep It</span>
+        <h3>Hand It Down</h3>
+        <p>Want to pass the shop to your kids or your crew? Then it can&rsquo;t live in your head and your truck. The right systems turn a job you own into a <b>legacy that keeps paying</b> the next generation.</p>
+      </div>
+      <div class="why-path reveal">
+        <span class="tag">Path 02 · Sell It</span>
+        <h3>Cash Out One Day</h3>
+        <p>Planning to sell? Buyers don&rsquo;t pay for hustle. They pay for a clean P&amp;L, repeatable revenue and a team that delivers without you. That&rsquo;s the difference between <b>a multiple and a fire sale.</b></p>
+      </div>
+    </div>
+    <div class="why-bridge reveal">
+      <span class="lbl">Either way</span>
+      <p>The more <span class="amp">systemized and profitable</span> your business is, the more it&rsquo;s worth, whether you keep it for life or sell it tomorrow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORTH / FINAL ============ -->
+<section class="worth band-ink" id="worth">
+  <div class="wrap">
+    <span class="eyebrow reveal">The Bottom Line</span>
+    <h2 class="display reveal">What's Your Business <span class="amp">Really Worth?</span></h2>
+    <p class="lead reveal">Most owners are sitting on more value than they think, and quietly leaking some of it every month. Your free valuation shows you <strong>both numbers</strong>.</p>
+    <ul class="worth-list reveal">
+      <li>What your business is worth right now</li>
+      <li>Where you&rsquo;re leaving money on the table</li>
+      <li>What it would take to lift your number</li>
+    </ul>
+    <div class="cta-wrap reveal">
+      <a class="btn lg" href="#worth">Get My Free Valuation</a>
+      <div class="micro"><span>No retainer</span><span class="sep">·</span><span>No obligation</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="mark">JMCG</span>
+    <span class="spacer"></span>
+    <span>Free HVAC &amp; Plumbing Business Valuation</span>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  (function(){
+    var els = [].slice.call(document.querySelectorAll('.reveal'));
+    if(!('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin:'0px 0px -8% 0px', threshold:0.08 });
+    els.forEach(function(e){ io.observe(e); });
+  })();
+
+  // PARTNERS — 3-up carousel that shifts one card at a time (desktop only)
+  (function(){
+    var viewport = document.querySelector('.rev-viewport');
+    var track = document.getElementById('revTrack');
+    var dotsWrap = document.getElementById('revDots');
+    var prevBtn = document.getElementById('revPrev');
+    var nextBtn = document.getElementById('revNext');
+    if(!viewport || !track) return;
+
+    var VISIBLE = 3, GAP = 26, DELAY = 4200, DUR = 620;
+    var originals = [].slice.call(track.children);
+    var count = originals.length;            // 5
+    var clones = [];
+    var index = 0, timer = null, animating = false, built = false, raf = null;
+
+    function isDesktop(){ return window.innerWidth > 900; }
+    function step(){ return originals[0].offsetWidth + GAP; }
+
+    function equalize(){
+      var all = [].slice.call(track.children);
+      all.forEach(function(c){ c.style.minHeight = ''; });
+      var max = 0;
+      all.forEach(function(c){ max = Math.max(max, c.offsetHeight); });
+      all.forEach(function(c){ c.style.minHeight = max + 'px'; });
+    }
+
+    function setDot(){
+      var active = ((index % count) + count) % count;
+      [].forEach.call(dotsWrap.children, function(d, n){ d.classList.toggle('active', n === active); });
+    }
+
+    function animateTo(target, cb){
+      if(raf) cancelAnimationFrame(raf);
+      var start = viewport.scrollLeft, delta = target - start, t0 = null;
+      function frame(now){
+        if(t0 === null) t0 = now;
+        var p = Math.min(1, (now - t0) / DUR);
+        var e = p < .5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2) / 2; // easeInOutQuad
+        viewport.scrollLeft = start + delta * e;
+        if(p < 1){ raf = requestAnimationFrame(frame); }
+        else { raf = null; if(cb) cb(); }
+      }
+      raf = requestAnimationFrame(frame);
+    }
+
+    function go(n){
+      if(animating) return;
+      animating = true;
+      index = n;
+      setDot();
+      animateTo(index * step(), function(){
+        // seamless loop: snap back when we've scrolled into the cloned set
+        if(index >= count){ index -= count; viewport.scrollLeft = index * step(); }
+        else if(index < 0){ index += count; viewport.scrollLeft = index * step(); }
+        animating = false;
+      });
+    }
+    function next(){ go(index + 1); }
+    function prev(){ go(index - 1); }
+
+    function start(){ stop(); timer = setInterval(next, DELAY); }
+    function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+
+    function build(){
+      if(built) return;
+      built = true;
+      for(var i = 0; i < VISIBLE; i++){
+        var c = originals[i].cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        clones.push(c); track.appendChild(c);
+      }
+      originals.forEach(function(_, n){
+        var b = document.createElement('button');
+        b.setAttribute('aria-label', 'Go to review ' + (n + 1));
+        b.addEventListener('click', function(){ if(((index % count) + count) % count !== n){ go(n); } start(); });
+        dotsWrap.appendChild(b);
+      });
+      if(nextBtn) nextBtn.addEventListener('click', function(){ next(); start(); });
+      if(prevBtn) prevBtn.addEventListener('click', function(){ prev(); start(); });
+      viewport.addEventListener('mouseenter', stop);
+      viewport.addEventListener('mouseleave', start);
+    }
+
+    function teardown(){
+      stop();
+      if(raf){ cancelAnimationFrame(raf); raf = null; }
+      clones.forEach(function(c){ if(c.parentNode) c.parentNode.removeChild(c); });
+      clones = [];
+      dotsWrap.innerHTML = '';
+      built = false; index = 0; animating = false;
+      viewport.scrollLeft = 0;
+      [].slice.call(track.children).forEach(function(c){ c.style.minHeight = ''; });
+    }
+
+    function sync(){
+      if(isDesktop()){
+        build();
+        equalize();
+        index = ((index % count) + count) % count;
+        viewport.scrollLeft = index * step();
+        setDot();
+        start();
+      } else {
+        teardown();
+      }
+    }
+
+    var rt;
+    window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(sync, 200); });
+    if(document.readyState === 'complete') sync();
+    else window.addEventListener('load', sync);
+    setTimeout(sync, 400);
+  })();
+</script>
+
+</body>
+</html>

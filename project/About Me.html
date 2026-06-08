@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>About — Caleb Johnson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f1e8d2;
+    --cream-2:#ece2c6;
+    --ink:#11332f;
+    --ink-2:#1a4641;
+    --muted:#5f7370;
+    --amber:#d99423;
+    --amber-2:#b97915;
+    --strip:#e8a635;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#3a3a36; }
+  body{
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .page{
+    width:8.5in; height:11in;
+    background:var(--cream);
+    margin:24px auto;
+    position:relative; overflow:hidden;
+    box-shadow:0 24px 60px rgba(0,0,0,.35);
+    page-break-after:always;
+  }
+  .page:last-of-type{ page-break-after:auto; }
+
+  .rail{ position:absolute; left:0; top:0; bottom:0; width:.42in; background:var(--strip); }
+  .rail-text{
+    position:absolute; left:.55in; top:0; bottom:0; width:.3in;
+    display:flex; align-items:center; justify-content:center;
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    font-family:"IBM Plex Mono", monospace;
+    font-size:9.5px; letter-spacing:.32em; text-transform:uppercase; color:var(--ink);
+  }
+  .frame{ position:absolute; inset:0; padding:.42in .55in .42in 1.0in; display:flex; flex-direction:column; }
+
+  /* atoms */
+  .mono{ font-family:"IBM Plex Mono", monospace; letter-spacing:.18em; text-transform:uppercase; }
+  .display{ font-family:"Alfa Slab One", serif; font-weight:400; letter-spacing:-.005em; line-height:.9; text-transform:uppercase; color:var(--ink); }
+  .display .amp{ color:var(--amber); }
+
+  .topbar{ display:flex; align-items:center; gap:10px; }
+  .tag{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+    padding:7px 12px; border:1.5px solid var(--ink); color:var(--ink); line-height:1;
+  }
+  .tag.fill-amber{ background:var(--amber); border-color:var(--amber); color:#1a1306; }
+  .tag.fill-ink{ background:var(--ink); border-color:var(--ink); color:var(--cream); }
+  .tag .accent{ color:var(--amber); }
+  .topbar .grow{ flex:1; height:2px; background:var(--ink); }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--ink); color:var(--cream);
+    padding:7px 12px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  }
+  .eyebrow .num{ color:var(--amber); }
+  .eyebrow.outline{ background:transparent; color:var(--ink); border:1.5px solid var(--ink); }
+  .eyebrow.amber{ background:var(--amber); color:#1a1306; }
+  .eyebrow.amber .num{ color:var(--ink); }
+
+  /* ============ PAGE 1 ============ */
+  .p1-hero{ margin-top:10px; }
+  .p1-hero .display{ font-size:78px; line-height:.88; }
+  .p1-hero .display .amp{ color:var(--amber); }
+  .p1-hero .sub{
+    margin-top:10px;
+    display:flex; align-items:center; gap:14px;
+    font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink);
+  }
+  .p1-hero .sub .line{ flex:1; height:1.5px; background:var(--ink); }
+
+  /* Hero photo + story grid */
+  .meet{
+    margin-top:12px;
+    display:grid; grid-template-columns: 3.7in 1fr; gap:.28in;
+  }
+  .photo{
+    position:relative; overflow:hidden;
+    background:#222;
+    border:1.5px solid var(--ink);
+  }
+  .photo img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .photo .photo-cap{
+    position:absolute; left:10px; bottom:10px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:8.5px; letter-spacing:.18em; text-transform:uppercase;
+    background:var(--ink); color:var(--cream);
+    padding:5px 8px;
+  }
+  .photo .photo-stamp{
+    position:absolute; right:10px; top:10px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:8.5px; letter-spacing:.18em; text-transform:uppercase;
+    background:var(--amber); color:#1a1306;
+    padding:5px 8px;
+  }
+  .hero-photo{ height:3.7in; }
+
+  .story h2{
+    font-family:"Alfa Slab One", serif; font-weight:400; font-size:26px; line-height:1; text-transform:uppercase;
+    margin:6px 0 8px;
+  }
+  .story p{
+    margin:0 0 7px;
+    font-size:11.5px; line-height:1.5; color:var(--ink-2);
+  }
+  .story p strong{ color:var(--ink); }
+  .stat-pair{
+    margin-top:10px; padding-top:10px; border-top:1.5px solid var(--ink);
+    display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  }
+  .stat-pair .big{
+    font-family:"Alfa Slab One", serif; font-size:28px; line-height:1; color:var(--amber);
+  }
+  .stat-pair .lbl{
+    margin-top:3px;
+    font-family:"IBM Plex Mono", monospace; font-size:8.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-2);
+    line-height:1.3;
+  }
+
+  /* Journey strip */
+  .journey{
+    margin-top:10px;
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;
+  }
+  .jcard{ position:relative; height:1.3in; }
+  .jcard .cap{
+    position:absolute; left:8px; bottom:8px;
+    background:var(--ink); color:var(--cream);
+    font-family:"IBM Plex Mono", monospace;
+    font-size:8px; letter-spacing:.16em; text-transform:uppercase;
+    padding:4px 7px;
+  }
+
+  /* Thesis bar */
+  .thesis-bar{
+    margin-top:10px;
+    background:var(--ink); color:var(--cream);
+    padding:12px 16px;
+    display:grid; grid-template-columns: auto 1fr; align-items:center; gap:16px;
+  }
+  .thesis-bar .lhs{
+    font-family:"Alfa Slab One", serif; font-size:22px; line-height:1; color:var(--cream); text-transform:uppercase;
+  }
+  .thesis-bar .lhs .amp{ color:var(--amber); }
+  .thesis-bar .rhs{ font-size:11.5px; line-height:1.5; color:#e6dcc1; }
+  .thesis-bar .rhs strong{ color:var(--amber); font-weight:600; }
+
+  /* ============ PAGE 2 (v4 — story / narrative) ============ */
+  .p2-top{
+    margin-top:10px;
+    display:grid; grid-template-columns: 2.4in 1fr; gap:.3in;
+    align-items:end;
+  }
+  .p2-top .photo{ height:2.0in; }
+  .p2-title h2.display{ font-size:54px; line-height:.88; margin:6px 0 6px; }
+  .p2-title .intro{
+    font-size:11.5px; line-height:1.55; color:var(--ink-2);
+    margin:6px 0 0; max-width:4.4in;
+  }
+  .p2-title .intro strong{ color:var(--ink); }
+
+  /* Story chapters */
+  .story-block{
+    margin-top:10px;
+    border-top:2.5px solid var(--ink);
+    padding-top:6px;
+  }
+  .chapter{
+    display:grid; grid-template-columns: .7in 1fr;
+    gap:12px; align-items:start;
+    padding:5px 0 6px;
+    border-bottom:1px solid rgba(17,51,47,.4);
+  }
+  .chapter:last-child{ border-bottom:none; padding-bottom:2px; }
+  .chapter .cn{
+    font-family:"Alfa Slab One", serif; font-size:32px; line-height:.9; color:var(--amber);
+  }
+  .chapter .ch-eyebrow{
+    display:inline-block;
+    font-family:"IBM Plex Mono", monospace; font-size:8px; letter-spacing:.22em; text-transform:uppercase;
+    background:var(--ink); color:var(--cream); padding:3px 6px; margin-bottom:4px;
+  }
+  .chapter h3{
+    margin:0 0 3px;
+    font-family:"Alfa Slab One", serif; font-weight:400; font-size:17px; line-height:1; text-transform:uppercase;
+    color:var(--ink);
+  }
+  .chapter p{
+    margin:0;
+    font-size:11px; line-height:1.5; color:var(--ink-2);
+  }
+  .chapter p b{ color:var(--ink); }
+
+  /* Photo strip mid-page */
+  .story-photos{
+    margin-top:8px;
+    display:grid; grid-template-columns: 1fr 1fr; gap:10px;
+  }
+  .story-photos .photo{ height:1.25in; }
+
+  /* Closing pull-quote */
+  .pullquote{
+    margin-top:10px;
+    background:var(--ink); color:var(--cream);
+    padding:11px 16px;
+    display:grid; grid-template-columns: auto 1fr; gap:14px; align-items:center;
+  }
+  .pullquote .mark{
+    font-family:"Alfa Slab One", serif; font-size:46px; line-height:.8; color:var(--amber);
+  }
+  .pullquote .q{
+    font-family:"Alfa Slab One", serif; font-size:18px; line-height:1.1; text-transform:uppercase; color:var(--cream);
+  }
+  .pullquote .q .amp{ color:var(--amber); }
+  .pullquote .attr{
+    margin-top:6px;
+    font-family:"IBM Plex Mono", monospace; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:#d8cdb0;
+  }
+
+  /* CTA footer */
+  .p2-cta{
+    margin-top:10px; padding-top:8px;
+    border-top:1.5px solid var(--ink);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink);
+  }
+  .p2-cta b{ color:var(--amber-2); font-weight:600; }
+
+  .p2-divider{
+    margin:10px 0 6px;
+    display:grid; grid-template-columns: auto 1fr auto; align-items:center; gap:14px;
+  }
+  .p2-divider .rule{ height:2.5px; background:var(--ink); }
+  .p2-divider .lbl{
+    font-family:"IBM Plex Mono", monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase;
+    background:var(--ink); color:var(--cream);
+    padding:6px 10px; line-height:1;
+  }
+  .p2-divider .lbl .num{ color:var(--amber); }
+  .p2-divider .end{
+    font-family:"IBM Plex Mono", monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink);
+  }
+
+  /* Long-form leak list */
+  .leak-list{
+    display:flex; flex-direction:column;
+  }
+  .leak-item{
+    display:grid; grid-template-columns: .5in 1fr 1.45in;
+    gap:12px; align-items:start;
+    padding:6px 0 7px;
+    border-bottom:1px solid rgba(17,51,47,.4);
+  }
+  .leak-item:last-child{ border-bottom:none; }
+  .leak-item .n{
+    font-family:"Alfa Slab One", serif; font-size:26px; line-height:1; color:var(--amber);
+  }
+  .leak-item h3{
+    margin:1px 0 2px;
+    font-family:"Alfa Slab One", serif; font-weight:400; font-size:13.5px; line-height:1; text-transform:uppercase;
+    color:var(--ink);
+  }
+  .leak-item p{
+    margin:0;
+    font-size:10.5px; line-height:1.45; color:var(--ink-2);
+  }
+  .leak-item p b{ color:var(--ink); }
+  .leak-item .pull{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:8.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink);
+    background:var(--cream-2);
+    border-left:3px solid var(--amber);
+    padding:5px 8px;
+    line-height:1.4;
+    align-self:start;
+  }
+  .leak-item .pull b{ color:var(--amber-2); font-weight:600; }
+
+  /* Footer block: order + offers compact */
+  .p2-tail{
+    margin-top:10px;
+    padding-top:10px;
+    border-top:2.5px solid var(--ink);
+  }
+  .order-line{
+    display:flex; align-items:center; gap:12px; flex-wrap:nowrap;
+    margin:4px 0 6px;
+  }
+  .order-line .arrow{
+    font-family:"IBM Plex Mono", monospace; color:var(--amber); font-weight:700; font-size:13px;
+  }
+  .order-line .step{
+    display:flex; align-items:baseline; gap:7px;
+  }
+  .order-line .sn{
+    font-family:"Alfa Slab One", serif; font-size:19px; line-height:1; color:var(--amber);
+  }
+  .order-line .nm{
+    font-family:"Alfa Slab One", serif; font-size:12px; line-height:1; text-transform:uppercase; color:var(--ink);
+  }
+  .order-kicker{
+    font-size:11px; line-height:1.45; color:var(--ink-2); margin:0 0 8px;
+    max-width:6.5in;
+  }
+  .order-kicker b{ color:var(--ink); }
+
+  .next-steps{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;
+    padding-top:8px; border-top:1px solid rgba(17,51,47,.5);
+  }
+  .ns{ font-size:10px; line-height:1.4; color:var(--ink-2); }
+  .ns .h{
+    display:block;
+    font-family:"Alfa Slab One", serif; font-weight:400; font-size:12.5px; text-transform:uppercase; color:var(--ink);
+    margin-bottom:2px;
+  }
+  .ns .lbl{
+    display:inline-block;
+    font-family:"IBM Plex Mono", monospace; font-size:8px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--amber-2); margin-right:5px;
+  }
+
+  .p2-cta{
+    margin-top:8px; padding-top:8px;
+    border-top:1.5px solid var(--ink);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:"IBM Plex Mono", monospace; font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink);
+  }
+  .p2-cta b{ color:var(--amber-2); font-weight:600; }
+
+  /* keep old styles around in case still referenced — neutralized */
+  .leakgrid, .lcard, .proofrow, .order-steps, .ostep, .offers, .offer, .p2-foot{ }
+  .p2-hero .sub strong{ color:var(--ink); }
+
+  /* Leak cards — much less prose */
+  .leakgrid{
+    margin-top:14px;
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;
+  }
+  .lcard{
+    background:var(--cream-2);
+    border:1.5px solid var(--ink);
+    padding:11px 12px 11px;
+    display:flex; flex-direction:column; gap:4px;
+    min-height:1.45in;
+  }
+  .lcard .top{
+    display:flex; align-items:baseline; gap:8px;
+    border-bottom:1px solid rgba(17,51,47,.4);
+    padding-bottom:6px; margin-bottom:6px;
+  }
+  .lcard .n{
+    font-family:"Alfa Slab One", serif; font-size:28px; line-height:1; color:var(--amber);
+  }
+  .lcard .name{
+    font-family:"Alfa Slab One", serif; font-size:13px; line-height:1.05; text-transform:uppercase; color:var(--ink);
+  }
+  .lcard p{
+    margin:0; font-size:10.5px; line-height:1.4; color:var(--ink-2);
+  }
+  .lcard .stat{
+    margin-top:auto;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:9px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink); padding:5px 7px; border:1px solid var(--ink);
+    align-self:flex-start;
+    line-height:1.35;
+  }
+  .lcard .stat b{ color:var(--amber-2); font-weight:600; }
+  .lcard.dark{ background:var(--ink); color:var(--cream); border-color:var(--ink); }
+  .lcard.dark .name{ color:var(--cream); }
+  .lcard.dark .top{ border-bottom-color:rgba(255,255,255,.25); }
+  .lcard.dark p{ color:#d8cdb0; }
+  .lcard.dark .stat{ color:var(--cream); border-color:var(--cream); }
+  .lcard.dark .stat b{ color:var(--amber); }
+
+  /* Proof / dashboard row */
+  .proofrow{
+    margin-top:10px;
+    display:grid; grid-template-columns: 3.1in 1fr; gap:.24in;
+  }
+  .proofrow .photo{ height:1.9in; }
+  .proofcopy h3{
+    font-family:"Alfa Slab One", serif; font-weight:400; font-size:22px; line-height:1; text-transform:uppercase;
+    margin:6px 0 6px;
+  }
+  .proofcopy p{
+    margin:0 0 8px;
+    font-size:11.5px; line-height:1.5; color:var(--ink-2);
+  }
+  .order-steps{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;
+    margin-top:6px;
+  }
+  .ostep{
+    border:1.5px solid var(--ink); padding:8px 10px;
+    background:var(--cream);
+  }
+  .ostep .sn{ font-family:"Alfa Slab One", serif; font-size:18px; color:var(--amber); line-height:1; }
+  .ostep .lbl{
+    margin-top:3px;
+    font-family:"IBM Plex Mono", monospace; font-size:8.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink);
+    line-height:1.3;
+  }
+
+  /* Offers */
+  .offers{
+    margin-top:12px;
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;
+  }
+  .offer{
+    border:1.5px solid var(--ink);
+    background:var(--cream);
+    padding:10px 12px 11px;
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .offer .stamp{
+    align-self:flex-start;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:8.5px; letter-spacing:.16em; text-transform:uppercase;
+    background:var(--ink); color:var(--cream); padding:4px 7px;
+  }
+  .offer h5{
+    margin:3px 0 0;
+    font-family:"Alfa Slab One", serif; font-weight:400; font-size:15px; line-height:1; text-transform:uppercase;
+  }
+  .offer p{ margin:0; font-size:10px; line-height:1.4; color:var(--ink-2); }
+  .offer .fit{
+    margin-top:auto; padding-top:6px;
+    border-top:1px dashed var(--ink);
+    font-size:9.5px; color:var(--ink); line-height:1.35;
+  }
+  .offer .fit b{ color:var(--amber-2); }
+  .offer.feature{ background:var(--ink); color:var(--cream); border-color:var(--ink); }
+  .offer.feature h5{ color:var(--cream); }
+  .offer.feature p{ color:#d8cdb0; }
+  .offer.feature .stamp{ background:var(--amber); color:#1a1306; }
+  .offer.feature .fit{ color:var(--cream); border-top-color:rgba(255,255,255,.35); }
+  .offer.feature .fit b{ color:var(--amber); }
+
+  .p2-foot{
+    margin-top:10px; padding-top:8px;
+    border-top:1.5px solid var(--ink);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink);
+  }
+  .p2-foot .end b{ color:var(--amber-2); font-weight:600; }
+
+  /* Print */
+  @page{ size: letter; margin:0; }
+  @media print{
+    html,body{ background:#fff; }
+    .page{ margin:0; box-shadow:none; }
+  }
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#11332f"/>
+    <rect x="0" y="0" width="6" height="100" fill="#e8a635"/>
+    <text x="50" y="68" font-family="Georgia, serif" font-size="58" font-weight="900" text-anchor="middle" fill="#f1e8d2">C</text>
+    <text x="50" y="86" font-family="monospace" font-size="6" letter-spacing="2" text-anchor="middle" fill="#d99423">ABOUT</text>
+  </svg>
+</template>
+
+<!-- ============================== PAGE 1 ============================== -->
+<section class="page" data-screen-label="01 Meet Caleb">
+  <div class="rail"></div>
+  <div class="rail-text">CALEB JOHNSON &nbsp;·&nbsp; OPERATOR · BUILDER · CONSULTANT</div>
+
+  <div class="frame">
+    <div class="topbar">
+      <span class="tag fill-amber">VOLUME 0</span>
+      <span class="tag fill-ink">ABOUT</span>
+      <span class="tag">JOB № 0001</span>
+      <span class="grow"></span>
+    </div>
+
+    <div class="p1-hero">
+      <h1 class="display">
+        AFTER THE<br/>
+        PHONE <span class="amp">RINGS.</span>
+      </h1>
+      <div class="sub">
+        <span>A NOTE FROM CALEB JOHNSON</span>
+        <span class="line"></span>
+        <span>FOR HVAC OWNERS</span>
+      </div>
+    </div>
+
+    <!-- Hero photo + story -->
+    <div class="meet">
+      <div class="photo hero-photo">
+        <img src="img/operator-furnace.jpg" alt="Caleb working on a furnace in J&amp;J Heating &amp; Air gear" />
+        <span class="photo-stamp">ON THE JOB</span>
+        <span class="photo-cap">FAMILY HVAC · IN THE FIELD</span>
+      </div>
+      <div class="story">
+        <h2>Built it.<br/>Not just studied&nbsp;it.</h2>
+        <p>We grew our family's HVAC business past <strong>$15M a year.</strong></p>
+        <p>The lesson wasn't marketing — it was everything that happened <strong>after the phone rang.</strong> Dispatch got tighter. Follow-up stopped slipping. Techs got more productive without longer hours. Reviews compounded. Leadership got real visibility.</p>
+        <p>Now I help other operators do the same.</p>
+
+        <div class="stat-pair">
+          <div>
+            <div class="big">$15M+</div>
+            <div class="lbl">Family shop<br/>annual revenue</div>
+          </div>
+          <div>
+            <div class="big">10+ yrs</div>
+            <div class="lbl">Operator inside<br/>the trade</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Journey strip -->
+    <div class="journey">
+      <div class="photo jcard">
+        <img src="img/feel-the-love.jpg" alt="Younger Caleb in a Lennox Feel the Love shirt next to an AC unit" style="object-fit: cover; width: 213px; height: 251px" />
+        <span class="cap">EARLY DAYS</span>
+      </div>
+      <div class="photo jcard">
+        <img src="img/whiteboard.jpg" alt="Caleb at the daily scorecard whiteboard tracking KPIs" />
+        <span class="cap">SCOREBOARDS · DAILY KPIs</span>
+      </div>
+      <div class="photo jcard">
+        <img src="img/vault-25.jpg" alt="Caleb at the Vault '25 conference" />
+        <span class="cap">VAULT '25 · OPERATORS ROOM</span>
+      </div>
+    </div>
+
+    <!-- Thesis bar -->
+    <div class="thesis-bar">
+      <div class="lhs">YOU DON'T HAVE A<br/>LEAD <span class="amp">PROBLEM.</span></div>
+      <div class="rhs">
+        Most HVAC shops have an <strong>operational bottleneck problem.</strong> The leads are coming in — they're being missed, mishandled, or dropped between hand-offs. Before another marketing dollar, look at what happens after the phone rings.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================== PAGE 2 ============================== -->
+<section class="page" data-screen-label="02 The Story">
+  <div class="rail"></div>
+  <div class="rail-text">THE STORY &nbsp;·&nbsp; INSIDE THE OPERATION</div>
+
+  <div class="frame">
+    <div class="topbar">
+      <span class="tag fill-ink">SECTION <span class="accent">02</span> · THE STORY</span>
+      <span class="tag">INSIDE THE OPERATION</span>
+      <span class="tag">WHAT CHANGED</span>
+      <span class="grow"></span>
+    </div>
+
+    <!-- Hero with writing photo + title -->
+    <div class="p2-top">
+      <div class="photo">
+        <img src="img/writing.jpg" alt="Caleb writing out the plan on paper" />
+        <span class="photo-stamp">THE PLAN</span>
+        <span class="photo-cap">BUILDING THE PLAYBOOK</span>
+      </div>
+      <div class="p2-title">
+        <span class="eyebrow"><span class="num">A</span> · INSIDE THE OPERATION</span>
+        <h2 class="display">A FAMILY<br/>SHOP <span class="amp">STORY.</span></h2>
+        <p class="intro">
+          Before any of this was a method, it was just <strong>our family business</strong> — and a problem we had to solve. This is what happened inside the shop, in our own words.
+        </p>
+      </div>
+    </div>
+
+    <!-- Story chapters -->
+    <div class="story-block">
+      <div class="chapter">
+        <div class="cn">01</div>
+        <div>
+          <span class="ch-eyebrow">CHAPTER ONE · WHERE WE STARTED</span>
+          <h3>A shop that ran on grit.</h3>
+          <p>We grew our family's HVAC business and pushed it <b>past $15M a year.</b> Trucks on the road every day, techs in the field, a CSR desk that never stopped ringing in the summer. Like most shops our size, the business ran on <b>instincts, a tight crew, and a lot of late nights.</b> It worked. But it ran us as much as we ran it.</p>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="cn">02</div>
+        <div>
+          <span class="ch-eyebrow">CHAPTER TWO · THE THING WE FINALLY SAW</span>
+          <h3>The leads weren't the problem.</h3>
+          <p>For years we thought the answer to growth was <b>more leads.</b> Bigger marketing budget. Newer trucks. Then one summer we sat down and actually looked at the numbers — and the leads were <b>already there.</b> They were being missed during peak hours. Dropped between hand-offs. Quoted and never followed up on. The business was already busy enough to be twice its size.</p>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="cn">03</div>
+        <div>
+          <span class="ch-eyebrow">CHAPTER THREE · WHAT WE ACTUALLY DID</span>
+          <h3>We tightened the operation.</h3>
+          <p>We put numbers on the wall. We rebuilt the way the CSR desk took calls. We changed how dispatch handed jobs to techs. We built a follow-up system that didn't depend on anyone remembering. And we started measuring the things that actually moved the business — <b>answer rate, close rate, billable hours per tech, review velocity, average ticket</b> — every single day.</p>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="cn">04</div>
+        <div>
+          <span class="ch-eyebrow">CHAPTER FOUR · WHAT IT BECAME</span>
+          <h3>The same demand, twice the revenue.</h3>
+          <p>Nothing magic happened. We didn't spend more on ads. We didn't hire faster. The same leads, the same techs, the same town — they just stopped slipping through the cracks. Over the next few years the shop grew <b>past $15M a year,</b> and for the first time it ran without burning us out. That's the part we share with other operators now.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Closing pull-quote -->
+    <div class="pullquote">
+      <div class="mark">"</div>
+      <div>
+        <div class="q">WE GREW THE SHOP BY <span class="amp">FIXING</span> IT — NOT BY <span class="amp">FEEDING</span> IT.</div>
+        <div class="attr">— THE LESSON WE PASS ON</div>
+      </div>
+    </div>
+
+    <!-- CTA footer -->
+    <div class="p2-cta">
+      <span>WANT TO HEAR HOW IT MAPS TO YOUR SHOP?</span>
+      <span>→ <b>BOOK A 30-MIN CONVERSATION</b></span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

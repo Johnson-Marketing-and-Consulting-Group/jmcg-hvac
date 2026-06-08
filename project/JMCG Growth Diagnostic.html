@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en" data-hero="kpi" data-headline="a">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Free Growth Assessment — JMCG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f1e8d2;
+    --cream-2:#ece2c6;
+    --ink:#11332f;
+    --ink-2:#1a4641;
+    --ink-deep:#0c2723;
+    --muted:#5f7370;
+    --amber:#d99423;
+    --amber-2:#b97915;
+    --strip:#e8a635;
+    --maxw:1200px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  /* ---------- atoms ---------- */
+  .display{ font-family:"Alfa Slab One", serif; font-weight:400; line-height:.92; text-transform:uppercase; }
+  .amp{ color:var(--amber); }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 40px; }
+  .band-ink{ background:var(--ink); color:var(--cream); }
+  .band-ink .display{ color:var(--cream); }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:11px;
+    font-family:"IBM Plex Mono", monospace; font-size:11.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--ink-2);
+  }
+  .band-ink .eyebrow{ color:#c8bfa3; }
+  .pill-free{
+    display:inline-flex; align-items:center; gap:7px;
+    background:var(--amber); color:#1a1306;
+    font-family:"IBM Plex Mono", monospace; font-weight:600; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+    padding:6px 11px;
+  }
+  .pill-free .dot{ width:6px; height:6px; border-radius:50%; background:var(--ink); }
+
+  .kicker{
+    display:flex; align-items:center; gap:16px;
+    font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--amber);
+  }
+  .kicker .line{ flex:1; height:1.5px; background:currentColor; opacity:.4; }
+
+  /* CTA */
+  .btn{
+    display:inline-flex; align-items:center; gap:14px;
+    background:var(--amber); color:#1a1306;
+    border:none; cursor:pointer; text-decoration:none;
+    font-family:"IBM Plex Sans", sans-serif; font-weight:700; font-size:18px;
+    padding:20px 36px;
+    box-shadow:6px 6px 0 var(--ink-deep);
+    transition:transform .12s ease, box-shadow .12s ease;
+    text-transform:uppercase; letter-spacing:.02em; white-space:nowrap;
+  }
+  .btn::after{ content:"→"; font-family:"IBM Plex Mono",monospace; font-weight:600; }
+  .btn:hover{ transform:translate(-2px,-2px); box-shadow:9px 9px 0 var(--ink-deep); }
+  .btn:active{ transform:translate(2px,2px); box-shadow:3px 3px 0 var(--ink-deep); }
+  .band-ink .btn{ box-shadow:6px 6px 0 #000; }
+  .band-ink .btn:hover{ box-shadow:9px 9px 0 #000; }
+  .btn.lg{ font-size:20px; padding:23px 44px; }
+
+  .micro{
+    font-family:"IBM Plex Mono", monospace; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .micro .sep{ color:var(--amber); }
+  .band-ink .micro{ color:#c8bfa3; }
+
+  /* ---------- reveal animation (visible by default; .in animates it in) ---------- */
+  @keyframes revealUp{ from{ opacity:0; transform:translateY(22px); } to{ opacity:1; transform:none; } }
+  .reveal.in{ animation:revealUp .65s cubic-bezier(.2,.7,.3,1) both; }
+  @media (prefers-reduced-motion: reduce){ .reveal.in{ animation:none; } }
+
+  /* ---------- HEADER ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(12,39,35,.0); border-bottom:1px solid transparent;
+    transition:background .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  header.site.solid{ background:rgba(12,39,35,.97); border-bottom-color:rgba(255,255,255,.08); box-shadow:0 8px 30px rgba(0,0,0,.25); }
+  header.site .wrap{ display:flex; align-items:center; gap:16px; height:74px; }
+  .logo{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .logo .mark{
+    font-family:"IBM Plex Mono", monospace; font-weight:600; font-size:13px; letter-spacing:.18em;
+    background:var(--amber); color:#1a1306; padding:8px 11px; line-height:1;
+  }
+  .logo .word{ font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#c8bfa3; }
+  header.site .spacer{ flex:1; }
+  header.site .hdr-note{
+    display:flex; align-items:center; gap:9px;
+    font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#9aa9a2;
+  }
+  header.site .hdr-note b{ color:var(--amber); font-weight:600; }
+  header.site .hdr-note .ico{ width:6px; height:6px; border-radius:50%; background:#4caf6e; box-shadow:0 0 0 3px rgba(76,175,110,.18); }
+  header.site .hdr-cta{
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--amber); color:#1a1306; text-decoration:none;
+    font-family:"IBM Plex Sans",sans-serif; font-weight:700; font-size:13px; padding:12px 20px; letter-spacing:.02em; text-transform:uppercase;
+    box-shadow:3px 3px 0 var(--ink-deep);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  header.site .hdr-cta::after{ content:"\2192"; font-family:"IBM Plex Mono",monospace; }
+  header.site .hdr-cta:hover{ transform:translate(-1px,-1px); box-shadow:5px 5px 0 var(--ink-deep); }
+  @media (max-width:760px){ header.site .hdr-note{ display:none; } .logo .word{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ background:var(--ink); color:var(--cream); overflow:hidden; position:relative; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(115% 95% at 88% -5%, rgba(217,148,35,.20), transparent 52%);
+    pointer-events:none;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size:64px 64px; mask-image:radial-gradient(80% 60% at 50% 0%, #000 25%, transparent 72%);
+  }
+  .hero .wrap{ position:relative; z-index:1; padding-top:72px; padding-bottom:0; }
+
+  /* centered copy column */
+  .hero-copy{ max-width:980px; margin:0 auto; text-align:center; }
+  .hero .eyebrow-row{ display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:34px; }
+  .hero .eyebrow-row .eyebrow{ color:#9aa9a2; }
+  .hero h1.display{ color:var(--cream); font-size:clamp(44px,6.6vw,98px); letter-spacing:-.005em; margin:0 auto 26px; max-width:15ch; }
+  .hero h1 .amp{ color:var(--amber); }
+  .hero h1[data-h]{ display:none; }
+  html[data-headline="a"] .hero h1[data-h="a"]{ display:block; }
+  html[data-headline="b"] .hero h1[data-h="b"]{ display:block; }
+  .hero .sub{ font-size:20px; line-height:1.6; color:#ddd2b6; max-width:56ch; margin:0 auto 38px; }
+  .hero .sub strong{ color:var(--cream); }
+  .hero .cta-line{ display:flex; align-items:center; justify-content:center; gap:22px; flex-wrap:wrap; }
+  .hero .micro{ margin-top:18px; justify-content:center; }
+
+  /* credibility row */
+  .hero .cred{
+    margin-top:46px; display:inline-flex; align-items:center; gap:18px; flex-wrap:wrap; justify-content:center;
+    border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.03);
+    padding:14px 22px;
+  }
+  .hero .cred .stars{ color:var(--amber); font-size:15px; letter-spacing:2px; }
+  .hero .cred .txt{ font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:#c8bfa3; }
+  .hero .cred .txt b{ color:var(--cream); }
+  .hero .cred .rule{ width:1px; height:18px; background:rgba(255,255,255,.18); }
+  .hero .cred .grew{ font-family:"Alfa Slab One",serif; font-weight:400; font-size:16px; letter-spacing:0; color:var(--amber); }
+
+  /* hero visual band — full-width cinematic photo, no overlay */
+  .hero-visual{ position:relative; z-index:1; max-width:1120px; margin:64px auto 0; }
+  .hero-visual > div[data-variant]{ display:none; }
+  html[data-hero="kpi"] .hero-visual > div[data-variant="kpi"]{ display:block; }
+  html[data-hero="report"] .hero-visual > div[data-variant="report"]{ display:flex; }
+  html[data-hero="type"] .hero-visual > div[data-variant="type"]{ display:flex; }
+
+  .photo{
+    position:relative; overflow:hidden; background:#222; border:1.5px solid rgba(241,232,210,.22);
+    box-shadow:0 -30px 60px -30px rgba(0,0,0,.5);
+  }
+  .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .v-kpi .photo{ height:clamp(280px,40vw,440px); }
+  .v-kpi .photo img{ object-position:center 30%; filter:saturate(1.02); }
+  .v-kpi .photo::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg, rgba(12,39,35,.42) 0%, transparent 28%, transparent 70%, rgba(12,39,35,.55) 100%);
+  }
+  .v-kpi .cap{
+    position:absolute; left:18px; bottom:16px; z-index:2;
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+    background:rgba(12,39,35,.85); color:var(--cream); padding:7px 11px; border:1px solid rgba(241,232,210,.2);
+  }
+  .v-kpi .cap .lv{ width:7px; height:7px; border-radius:50%; background:var(--amber); }
+
+  /* report mockup */
+  .v-report{ display:flex; justify-content:center; align-items:center; }
+  .report{ position:relative; width:340px; }
+  .report .pg{ position:absolute; background:var(--cream-2); border:1.5px solid var(--ink-deep); box-shadow:8px 8px 0 rgba(0,0,0,.28); }
+  .report .pg.b2{ inset:24px -18px -18px 24px; background:#dccba0; }
+  .report .pg.b1{ inset:12px -8px -8px 12px; background:#e3d6b0; }
+  .report .pg.front{ position:relative; background:var(--cream); padding:26px 24px 28px; }
+  .report .rtop{ display:flex; align-items:center; justify-content:space-between; border-bottom:2px solid var(--ink); padding-bottom:12px; margin-bottom:16px; }
+  .report .rtop .rmark{ font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.16em; background:var(--ink); color:var(--cream); padding:5px 8px; }
+  .report .rtop .rtag{ font-family:"IBM Plex Mono",monospace; font-size:9px; letter-spacing:.16em; color:var(--amber-2); }
+  .report h4{ font-family:"Alfa Slab One",serif; font-weight:400; font-size:21px; line-height:1; text-transform:uppercase; color:var(--ink); margin:0 0 14px; }
+  .report h4 .amp{ color:var(--amber); }
+  .report .bar{ height:8px; background:rgba(17,51,47,.16); margin:9px 0; }
+  .report .bar.s{ width:72%; }
+  .report .bar.s2{ width:88%; }
+  .report .callout{ background:var(--ink); color:var(--cream); padding:13px 14px; margin:16px 0; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .report .callout .ct{ font-family:"IBM Plex Mono",monospace; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:#c8bfa3; }
+  .report .callout .cv{ font-family:"Alfa Slab One",serif; font-size:22px; color:var(--amber); line-height:1; }
+  .report .ktable{ border-top:1.5px solid var(--ink); }
+  .report .krow{ display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(17,51,47,.18); font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-2); }
+  .report .krow b{ color:var(--ink); }
+  .report .ribbon{
+    position:absolute; top:18px; right:-10px; z-index:3; background:var(--amber); color:#1a1306;
+    font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:7px 12px;
+    box-shadow:4px 4px 0 rgba(0,0,0,.3);
+  }
+
+  /* type-only stat panel */
+  .v-type{ display:flex; align-items:center; }
+  .statpanel{ width:100%; border:1.5px solid rgba(241,232,210,.25); background:rgba(255,255,255,.03); box-shadow:14px 14px 0 rgba(0,0,0,.28); }
+  .statpanel .big-row{ padding:42px 40px 34px; display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; border-bottom:1.5px solid rgba(255,255,255,.14); }
+  .statpanel .from{ font-family:"Alfa Slab One",serif; font-size:46px; color:var(--cream); line-height:1; }
+  .statpanel .arrow{ font-family:"IBM Plex Mono",monospace; font-size:30px; color:var(--amber); font-weight:600; }
+  .statpanel .to{ font-family:"Alfa Slab One",serif; font-size:88px; color:var(--amber); line-height:.9; }
+  .statpanel .cap{ width:100%; font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#9aa9a2; margin-top:4px; }
+  .statpanel .mini{ display:grid; grid-template-columns:repeat(3,1fr); }
+  .statpanel .mini > div{ padding:22px 20px; border-right:1.5px solid rgba(255,255,255,.14); }
+  .statpanel .mini > div:last-child{ border-right:none; }
+  .statpanel .mini .mv{ font-family:"Alfa Slab One",serif; font-size:26px; color:var(--cream); line-height:1; }
+  .statpanel .mini .ml{ font-family:"IBM Plex Mono",monospace; font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:#9aa9a2; margin-top:8px; line-height:1.4; }
+
+  /* ---------- TRUST STRIP ---------- */
+  .stats{ background:var(--amber); }
+  .stats .wrap{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
+  .stat{ padding:30px 28px; border-right:1.5px solid rgba(26,19,6,.22); }
+  .stat:last-child{ border-right:none; }
+  .stat .big{ font-family:"Alfa Slab One", serif; font-size:clamp(28px,3.2vw,42px); line-height:1; color:#1a1306; }
+  .stat .lbl{ font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#5a4413; margin-top:10px; line-height:1.4; }
+  @media (max-width:760px){ .stats .wrap{ grid-template-columns:1fr 1fr; } .stat{ border-bottom:1.5px solid rgba(26,19,6,.22); } .stat:nth-child(odd){ border-right:1.5px solid rgba(26,19,6,.22); } .stat:nth-child(even){ border-right:none; } }
+
+  /* ---------- PROBLEM ---------- */
+  .problem{ padding:100px 0; }
+  .problem .eyebrow{ margin-bottom:20px; }
+  .problem h2.display{ font-size:clamp(34px,4.6vw,60px); margin:0; max-width:18ch; }
+  .problem .body{
+    margin-top:44px; display:grid; grid-template-columns:1fr 1fr; gap:48px;
+    font-size:18px; line-height:1.7; color:var(--ink-2);
+  }
+  .problem .body p{ margin:0 0 16px; }
+  .problem .body p:last-child{ margin-bottom:0; }
+  .problem .body strong{ color:var(--ink); }
+  .problem .punch{
+    margin-top:50px; background:var(--ink); color:var(--cream); padding:34px 38px;
+    display:flex; align-items:center; gap:26px; flex-wrap:wrap;
+  }
+  .problem .punch .q{ font-family:"Alfa Slab One", serif; font-size:clamp(22px,2.7vw,32px); line-height:1.08; text-transform:uppercase; flex:1; min-width:280px; }
+  .problem .punch .q .amp{ color:var(--amber); }
+
+  /* ---------- WHAT YOU GET (ink) ---------- */
+  .inside{ padding:100px 0; }
+  .inside .top{ display:grid; grid-template-columns: 1fr 1fr; gap:48px; align-items:end; margin-bottom:48px; }
+  .inside h2.display{ font-size:clamp(34px,4.6vw,58px); margin:20px 0 0; }
+  .inside .lede{ font-size:19px; line-height:1.6; color:#ddd2b6; margin:0; }
+  .inside .lede strong{ color:var(--amber); }
+  .inc-list{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:0 56px; border-top:2px solid rgba(255,255,255,.2); }
+  .inc-list li{ display:grid; grid-template-columns:54px 1fr; gap:18px; align-items:start; padding:24px 0; border-bottom:1px solid rgba(255,255,255,.14); }
+  .inc-list li .n{ font-family:"Alfa Slab One", serif; font-size:24px; color:var(--amber); line-height:1; }
+  .inc-list li .t{ font-size:17px; line-height:1.5; color:#ddd2b6; padding-top:1px; }
+  .inc-list li .t b{ color:var(--cream); }
+  .inside .footnote{ margin-top:40px; text-align:center; font-family:"Alfa Slab One", serif; font-size:clamp(24px,3vw,40px); text-transform:uppercase; color:var(--cream); }
+  .inside .footnote .amp{ color:var(--amber); }
+
+  /* ---------- WHY / STORY ---------- */
+  .why{ padding:100px 0; }
+  .why .grid{ display:grid; grid-template-columns: .92fr 1.08fr; gap:58px; align-items:center; }
+  .why h2.display{ font-size:clamp(32px,4.2vw,54px); margin:20px 0 10px; }
+  .why .intro{ font-family:"IBM Plex Mono",monospace; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--amber-2); margin:0 0 22px; }
+  .why p{ font-size:17.5px; line-height:1.68; color:var(--ink-2); margin:0 0 15px; }
+  .why p strong{ color:var(--ink); }
+  .why .photo{ height:470px; box-shadow:14px 14px 0 rgba(17,51,47,.14); }
+  .why .photo .cap{ position:absolute; left:14px; bottom:14px; font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; background:var(--ink); color:var(--cream); padding:6px 10px; }
+  .payoff{ margin-top:28px; display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; border-top:2.5px solid var(--ink); padding-top:26px; }
+  .payoff .from{ font-family:"Alfa Slab One", serif; font-size:clamp(34px,4vw,52px); color:var(--ink); line-height:1; }
+  .payoff .arrow{ font-family:"IBM Plex Mono", monospace; font-size:28px; color:var(--amber); font-weight:600; }
+  .payoff .to{ font-family:"Alfa Slab One", serif; font-size:clamp(54px,6.6vw,88px); color:var(--amber); line-height:1; }
+  .payoff .lbl{ margin-left:auto; max-width:20ch; text-align:right; font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-2); line-height:1.5; }
+
+  /* ---------- DIFFERENT (ink) ---------- */
+  .diff{ padding:100px 0; }
+  .diff .eyebrow{ margin-bottom:20px; }
+  .diff h2.display{ font-size:clamp(34px,4.6vw,60px); margin:0 0 16px; }
+  .diff .lede{ font-size:19px; line-height:1.6; color:#ddd2b6; max-width:48ch; margin:0 0 50px; }
+  .diff .lede strong{ color:var(--amber); }
+  .compare{ display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:stretch; }
+  .card{ border:1.5px solid rgba(255,255,255,.2); padding:32px 32px 36px; background:rgba(255,255,255,.03); display:flex; flex-direction:column; }
+  .card.win{ border-color:var(--amber); background:rgba(217,148,35,.1); }
+  .card .label{ display:flex; align-items:center; gap:10px; font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#a89d80; margin-bottom:20px; }
+  .card.win .label{ color:var(--amber); }
+  .card .label .x{ font-family:"Alfa Slab One",serif; }
+  .card .quote{ font-size:21px; line-height:1.5; color:#cbc1a6; font-style:italic; }
+  .card.win .quote{ color:var(--cream); font-style:normal; }
+  .card .quote em{ color:var(--amber); font-style:normal; font-weight:600; }
+  .diff .close{ margin-top:46px; text-align:center; font-family:"Alfa Slab One", serif; font-size:clamp(22px,2.8vw,34px); text-transform:uppercase; color:var(--cream); }
+  .diff .close .amp{ color:var(--amber); }
+
+  /* ---------- HOW ---------- */
+  .how{ padding:100px 0; }
+  .how .head{ text-align:center; margin-bottom:56px; }
+  .how h2.display{ font-size:clamp(34px,4.6vw,58px); margin:20px 0 0; }
+  .how .kicker{ justify-content:center; color:var(--amber-2); }
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1.5px solid var(--ink); background:var(--cream-2); }
+  .step{ padding:40px 34px 44px; border-right:1.5px solid var(--ink); }
+  .step:last-child{ border-right:none; }
+  .step .n{ font-family:"Alfa Slab One", serif; font-size:60px; color:var(--amber); line-height:.85; }
+  .step h3{ font-family:"Alfa Slab One", serif; font-weight:400; font-size:22px; line-height:1.08; text-transform:uppercase; margin:20px 0 13px; color:var(--ink); }
+  .step p{ font-size:16.5px; line-height:1.55; color:var(--ink-2); margin:0; }
+  .step p b{ color:var(--ink); }
+  .how .ctarow{ text-align:center; margin-top:48px; display:flex; flex-direction:column; align-items:center; gap:16px; }
+  .how .ctarow .micro{ justify-content:center; }
+
+  /* ---------- WHO ---------- */
+  .who{ padding:100px 0; }
+  .who .eyebrow{ margin-bottom:20px; }
+  .who h2.display{ font-size:clamp(34px,4.6vw,58px); margin:0 0 48px; }
+  .who .grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .qual{ border:1.5px solid var(--ink); padding:36px 34px 40px; }
+  .qual.yes{ background:var(--ink); color:var(--cream); }
+  .qual.no{ background:transparent; }
+  .qual .h{ display:flex; align-items:center; gap:14px; margin-bottom:24px; font-family:"Alfa Slab One", serif; font-size:23px; text-transform:uppercase; }
+  .qual.yes .h{ color:var(--cream); }
+  .qual.no .h{ color:var(--ink); }
+  .qual .badge{ width:38px; height:38px; flex:none; display:flex; align-items:center; justify-content:center; font-family:"Alfa Slab One", serif; font-size:20px; line-height:1; }
+  .qual.yes .badge{ background:var(--amber); color:#1a1306; }
+  .qual.no .badge{ background:var(--ink); color:var(--cream); }
+  .qual ul{ list-style:none; margin:0; padding:0; }
+  .qual li{ display:flex; gap:14px; padding:15px 0; font-size:17px; line-height:1.5; }
+  .qual.yes li{ border-top:1px solid rgba(255,255,255,.14); color:#ddd2b6; }
+  .qual.no li{ border-top:1px solid rgba(17,51,47,.2); color:var(--ink-2); }
+  .qual li:first-child{ border-top:none; }
+  .qual li .mk{ font-family:"IBM Plex Mono", monospace; color:var(--amber); font-weight:600; flex:none; }
+  .qual.no li .mk{ color:var(--muted); }
+  .qual.yes li b{ color:var(--cream); }
+  .qual.no li b{ color:var(--ink); }
+
+  /* ---------- FINAL ---------- */
+  .final{ padding:120px 0; text-align:center; position:relative; overflow:hidden; }
+  .final::before{ content:""; position:absolute; inset:0; background:radial-gradient(100% 80% at 50% 0%, rgba(217,148,35,.18), transparent 60%); }
+  .final .wrap{ position:relative; }
+  .final .kicker{ justify-content:center; margin-bottom:24px; }
+  .final h2.display{ font-size:clamp(46px,6.4vw,92px); margin:0 0 30px; }
+  .final p{ font-size:21px; line-height:1.6; color:#ddd2b6; max-width:34ch; margin:0 auto 14px; }
+  .final p strong{ color:var(--amber); }
+  .final .cta-wrap{ margin-top:46px; display:flex; flex-direction:column; align-items:center; gap:18px; }
+  .final .cta-wrap .micro{ justify-content:center; }
+
+  /* ---------- footer ---------- */
+  footer{ background:var(--ink-deep); border-top:1px solid rgba(255,255,255,.1); padding:30px 0; }
+  footer .wrap{ display:flex; align-items:center; gap:14px; font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#9faea8; }
+  footer .mark{ font-family:"IBM Plex Mono", monospace; font-weight:600; font-size:12px; letter-spacing:.16em; background:var(--amber); color:#1a1306; padding:7px 10px; }
+  footer .spacer{ flex:1; }
+  footer b{ color:var(--amber); }
+
+  /* ---------- sticky mobile CTA ---------- */
+  .mobile-cta{ display:none; }
+  @media (max-width:680px){
+    .mobile-cta{ display:block; position:fixed; left:0; right:0; bottom:0; z-index:55; padding:12px 16px calc(12px + env(safe-area-inset-bottom)); background:rgba(12,39,35,.97); border-top:1px solid rgba(255,255,255,.1); }
+    .mobile-cta a{ display:flex; justify-content:center; width:100%; }
+    body{ padding-bottom:78px; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:920px){
+    .why .grid, .inside .top, .who .grid, .compare, .inc-list{ grid-template-columns:1fr; }
+    .why .grid, .who .grid, .compare{ gap:38px; }
+    .inside .top{ gap:24px; }
+    .inc-list{ gap:0; }
+    .problem .body{ grid-template-columns:1fr; gap:8px; }
+    .steps{ grid-template-columns:1fr; }
+    .step{ border-right:none; border-bottom:1.5px solid var(--ink); }
+    .step:last-child{ border-bottom:none; }
+    .why .photo{ height:380px; }
+    .report{ width:300px; }
+  }
+  @media (max-width:560px){
+    .wrap{ padding:0 22px; }
+    .payoff .lbl{ margin-left:0; text-align:left; width:100%; }
+    .problem,.inside,.why,.diff,.how,.who{ padding:70px 0; }
+    .final{ padding:84px 0; }
+    .statpanel .to{ font-size:64px; }
+    .statpanel .from{ font-size:36px; }
+  }
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#11332f"/>
+    <rect x="0" y="0" width="6" height="100" fill="#e8a635"/>
+    <text x="53" y="56" font-family="Georgia, serif" font-size="26" font-weight="900" text-anchor="middle" fill="#f1e8d2">JMCG</text>
+    <text x="53" y="76" font-family="monospace" font-size="5" letter-spacing="1.4" text-anchor="middle" fill="#d99423">FREE ASSESSMENT</text>
+  </svg>
+</template>
+
+<!-- HEADER -->
+<header class="site" id="siteHeader">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <span class="mark">JMCG</span>
+      <span class="word">Growth Diagnostic</span>
+    </a>
+    <span class="spacer"></span>
+    <span class="hdr-note"><span class="ico"></span> Operators who scaled <b>$4M&nbsp;→&nbsp;$15M</b></span>
+    <a class="hdr-cta" href="#start">Get Your Free Assessment</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="eyebrow-row reveal">
+        <span class="pill-free"><span class="dot"></span> 100% Free Assessment</span>
+        <span class="eyebrow">HVAC · Plumbing · Electrical · $1&ndash;15M</span>
+      </div>
+      <h1 class="display reveal" data-h="a">Your Shop Is Leaking Money. We'll Show You <span class="amp">Exactly Where.</span></h1>
+      <h1 class="display reveal" data-h="b">Find the Money Your Shop Is <span class="amp">Leaving on the Table.</span></h1>
+      <p class="sub reveal">A free Growth Assessment from operators who scaled a family HVAC shop from <strong>$4M to $15M.</strong> We rank your biggest revenue leaks, put a real dollar figure on each one, and hand you the plan to plug them.</p>
+      <div class="cta-line reveal">
+        <a class="btn lg" href="#start">Get Your Free Assessment</a>
+      </div>
+      <div class="micro reveal"><span>100% free</span><span class="sep">·</span><span>No retainer</span><span class="sep">·</span><span>Roadmap in 48 hours</span></div>
+      <div class="cred reveal">
+        <span class="stars">★★★★★</span>
+        <span class="txt">Built from inside the trade — <b>not the agency world</b></span>
+        <span class="rule"></span>
+        <span class="grew">$4M → $15M</span>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <!-- VARIANT: KPI photo -->
+      <div data-variant="kpi" class="v-kpi">
+        <div class="photo">
+          <img src="img/kpi-board.jpg" alt="An operator tracking the daily KPIs on the board" />
+          <span class="cap"><span class="lv"></span> Real KPI board · tracked daily</span>
+        </div>
+      </div>
+
+      <!-- VARIANT: report mockup -->
+      <div data-variant="report" class="v-report">
+        <div class="report">
+          <span class="ribbon">25&ndash;30 Pages</span>
+          <div class="pg b2"></div>
+          <div class="pg b1"></div>
+          <div class="pg front">
+            <div class="rtop"><span class="rmark">JMCG</span><span class="rtag">GROWTH ASSESSMENT</span></div>
+            <h4>Executive <span class="amp">Summary.</span></h4>
+            <div class="bar s2"></div>
+            <div class="bar s"></div>
+            <div class="bar s2"></div>
+            <div class="callout">
+              <span class="ct">Sales Dept · monthly leak</span>
+              <span class="cv">$14K</span>
+            </div>
+            <div class="ktable">
+              <div class="krow"><span>Booking rate</span><b>59% → 75%</b></div>
+              <div class="krow"><span>Avg ticket</span><b>$691 → $733</b></div>
+              <div class="krow"><span>Install close</span><b>48% → 70%</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIANT: type only -->
+      <div data-variant="type" class="v-type">
+        <div class="statpanel">
+          <div class="big-row">
+            <span class="from">$4M</span>
+            <span class="arrow">→</span>
+            <span class="to">$15M</span>
+            <span class="cap">What we scaled our own family shop to</span>
+          </div>
+          <div class="mini">
+            <div><div class="mv">48 hrs</div><div class="ml">Turnaround</div></div>
+            <div><div class="mv">25&ndash;30</div><div class="ml">Page roadmap</div></div>
+            <div><div class="mv">$0</div><div class="ml">Cost to you</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="big">$4M→$15M</div><div class="lbl">What we scaled<br/>our own shop to</div></div>
+    <div class="stat"><div class="big">48 hrs</div><div class="lbl">From intake to<br/>finished roadmap</div></div>
+    <div class="stat"><div class="big">25&ndash;30</div><div class="lbl">Page custom<br/>action plan</div></div>
+    <div class="stat"><div class="big">$0</div><div class="lbl">It costs you<br/>nothing</div></div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="problem">
+  <div class="wrap">
+    <span class="eyebrow reveal">THE PROBLEM</span>
+    <h2 class="display reveal">You're Not Stuck Because You Aren't Working Hard <span class="amp">Enough.</span></h2>
+    <div class="body">
+      <div class="reveal">
+        <p>The work is there. The calls are coming in. Your team is in the field. But the margins don't match the effort &mdash; or you've hit a ceiling you can't break through.</p>
+        <p>I get it. <strong>We hit the same walls.</strong></p>
+      </div>
+      <div class="reveal">
+        <p>The problem usually isn't leads. It's what happens <strong>after</strong> the call comes in.</p>
+        <p>If your CSRs aren't booking right, if your techs aren't selling, if your install team is leaving money on the table &mdash; more marketing just pours water into a leaking bucket.</p>
+      </div>
+    </div>
+    <div class="punch reveal">
+      <div class="q">The free assessment finds the leaks. <span class="amp">In order. With dollar figures attached.</span></div>
+      <a class="btn" href="#start">Find My Leaks</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT YOU GET (ink) ============ -->
+<section class="inside band-ink" id="inside">
+  <div class="wrap">
+    <div class="top">
+      <div class="reveal">
+        <span class="eyebrow">WHAT YOU GET — FREE</span>
+        <h2 class="display">What's Inside Your <span class="amp">Assessment.</span></h2>
+      </div>
+      <p class="lede reveal">A <strong>25&ndash;30 page custom roadmap</strong>, built for your specific shop &mdash; not a template, not a checklist.</p>
+    </div>
+    <ul class="inc-list">
+      <li class="reveal"><span class="n">01</span><span class="t">An <b>executive summary</b> with the one headline you need to read first</span></li>
+      <li class="reveal"><span class="n">02</span><span class="t">Your <b>top 3 revenue-priority departments</b>, ranked</span></li>
+      <li class="reveal"><span class="n">03</span><span class="t">The biggest bottlenecks in each &mdash; with <b>estimated monthly dollar impact</b></span></li>
+      <li class="reveal"><span class="n">04</span><span class="t">A sequenced plan: <b>Quick Wins (0&ndash;30 days), 90-Day Plays &amp; the 6-Month Build</b></span></li>
+      <li class="reveal"><span class="n">05</span><span class="t"><b>KPI tracking tables</b> per department, with current and target numbers</span></li>
+      <li class="reveal"><span class="n">06</span><span class="t">A <b>12-month revenue lift estimate</b> you can hold the plan against</span></li>
+    </ul>
+    <div class="footnote reveal">Not a list of problems. <span class="amp">A plan.</span></div>
+  </div>
+</section>
+
+<!-- ============ WHY / STORY ============ -->
+<section class="why">
+  <div class="wrap">
+    <div class="grid">
+      <div class="photo reveal">
+        <img src="img/whiteboard.jpg" alt="Tracking the daily KPIs on the board" />
+        <span class="cap">DAILY KPIS · ON THE WALL</span>
+      </div>
+      <div>
+        <span class="eyebrow reveal">WHY THIS WORKS</span>
+        <h2 class="display reveal">Built From Inside the <span class="amp">Trade.</span></h2>
+        <p class="intro reveal">I'm Caleb. I grew up in the trucks.</p>
+        <p class="reveal">I ran install jobs every summer, then joined the marketing side and we got good at bringing in calls. <strong>But more calls weren't enough.</strong></p>
+        <p class="reveal">So we did what most shops don't: we studied the biggest HVAC companies in the country &mdash; the $20M and $40M shops &mdash; and built their systems into ours. We rebuilt the call center, service, and sales, and trained our managers to hit the right numbers.</p>
+        <p class="reveal">The assessment you're getting is <strong>the same framework we used to get there.</strong></p>
+        <div class="payoff reveal">
+          <span class="from">$4M</span>
+          <span class="arrow">&rarr;</span>
+          <span class="to">$15M</span>
+          <span class="lbl">We didn't read this in a book. We lived it.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIFFERENT (ink) ============ -->
+<section class="diff band-ink">
+  <div class="wrap">
+    <span class="eyebrow reveal">WHAT'S DIFFERENT</span>
+    <h2 class="display reveal">This Isn't an <span class="amp">Audit.</span></h2>
+    <p class="lede reveal">Most audits tell you what's broken. This tells you <strong>what to do, in what order, and what it's worth.</strong></p>
+    <div class="compare">
+      <div class="card reveal">
+        <span class="label"><span class="x">✕</span> A Typical Agency Report</span>
+        <p class="quote">"Your sales process needs improvement."</p>
+      </div>
+      <div class="card win reveal">
+        <span class="label"><span class="x">✓</span> Your JMCG Assessment</span>
+        <p class="quote">"Your sales department is leaving an estimated <em>$14K/month</em> on the table. Here are the three calls to fix in the first 30 days."</p>
+      </div>
+    </div>
+    <div class="close reveal">You leave knowing what to do <span class="amp">Monday morning.</span></div>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker reveal"><span class="line"></span> HOW IT WORKS <span class="line"></span></span>
+      <h2 class="display reveal">Three <span class="amp">Steps.</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">1</div>
+        <h3>Fill out a 15-minute intake</h3>
+        <p>A short questionnaire <b>about your shop</b> &mdash; departments, numbers, and where it hurts.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">2</div>
+        <h3>We build your assessment</h3>
+        <p>Your roadmap, built by hand from inside the trade &mdash; <b>delivered in 48 hours.</b></p>
+      </div>
+      <div class="step reveal">
+        <div class="n">3</div>
+        <h3>You get your roadmap</h3>
+        <p>Ranked priorities, dollar figures, and a sequenced plan &mdash; <b>ready to execute.</b></p>
+      </div>
+    </div>
+    <div class="ctarow reveal">
+      <a class="btn lg" href="#start">Start My Free Assessment</a>
+      <div class="micro"><span>15 minutes now</span><span class="sep">·</span><span>Roadmap in 48 hours</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO ============ -->
+<section class="who" id="who">
+  <div class="wrap">
+    <span class="eyebrow reveal">WHO THIS IS FOR</span>
+    <h2 class="display reveal">Is This For <span class="amp">You?</span></h2>
+    <div class="grid">
+      <div class="qual yes reveal">
+        <div class="h"><span class="badge">✓</span> Built for you if</div>
+        <ul>
+          <li><span class="mk">→</span><span>You run an HVAC, plumbing, or electrical company doing <b>$1&ndash;15M</b></span></li>
+          <li><span class="mk">→</span><span>You're growing &mdash; or want to be &mdash; and you know the business has to <b>operate better</b> to get there</span></li>
+          <li><span class="mk">→</span><span>You're willing to read a 25&ndash;30 page document <b>and act on it</b></span></li>
+        </ul>
+      </div>
+      <div class="qual no reveal">
+        <div class="h"><span class="badge">✕</span> Not for you if</div>
+        <ul>
+          <li><span class="mk">×</span><span>You're <b>pre-revenue or under $1M</b></span></li>
+          <li><span class="mk">×</span><span>You want a <b>done-for-you marketing service</b> and nothing else</span></li>
+          <li><span class="mk">×</span><span>You're looking for a <b>quick fix</b></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL ============ -->
+<section class="final band-ink" id="start">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="line"></span><span>ONE DECISION</span><span class="line"></span></div>
+    <h2 class="display reveal">Know Exactly Where the <span class="amp">Money Is.</span></h2>
+    <p class="reveal">Run with it yourself, or have us help you implement it.</p>
+    <p class="reveal">Either way, you'll know <strong>exactly where the money is leaking</strong> &mdash; and what to fix first.</p>
+    <div class="cta-wrap reveal">
+      <a class="btn lg" href="#start">Get Your Free Assessment</a>
+      <div class="micro"><span>100% free</span><span class="sep">·</span><span>48-hour turnaround</span><span class="sep">·</span><span>No retainer</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="mark">JMCG</span>
+    <span class="spacer"></span>
+    <span>Built from inside the trade · <b>$4M → $15M</b></span>
+  </div>
+</footer>
+
+<!-- sticky mobile CTA -->
+<div class="mobile-cta"><a class="btn" href="#start">Get Your Free Assessment</a></div>
+
+<script>
+  // sticky header solidify
+  (function(){
+    var h = document.getElementById('siteHeader');
+    var onScroll = function(){ h.classList.toggle('solid', window.scrollY > 24); };
+    onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+  })();
+  // scroll reveal (content is visible by default; .in plays a one-shot entrance)
+  (function(){
+    var els = [].slice.call(document.querySelectorAll('.reveal'));
+    if(!('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin:'0px 0px -8% 0px', threshold:0.08 });
+    els.forEach(function(e){ io.observe(e); });
+  })();
+</script>
+
+<!-- Tweaks -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="growth-tweaks.jsx"></script>
+
+</body>
+</html>

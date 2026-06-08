@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>About — JMCG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f1e8d2;
+    --cream-2:#ece2c6;
+    --ink:#11332f;
+    --ink-2:#1a4641;
+    --muted:#5f7370;
+    --amber:#d99423;
+    --amber-2:#b97915;
+    --strip:#e8a635;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#3a3a36; }
+  body{
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .page{
+    width:8.5in; height:11in;
+    background:var(--cream);
+    margin:24px auto;
+    position:relative; overflow:hidden;
+    box-shadow:0 24px 60px rgba(0,0,0,.35);
+    page-break-after:always;
+  }
+  .page:last-of-type{ page-break-after:auto; }
+
+  .rail{ position:absolute; left:0; top:0; bottom:0; width:.42in; background:var(--strip); }
+  .rail-text{
+    position:absolute; left:.55in; top:0; bottom:0; width:.3in;
+    display:flex; align-items:center; justify-content:center;
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    font-family:"IBM Plex Mono", monospace;
+    font-size:9.5px; letter-spacing:.32em; text-transform:uppercase; color:var(--ink);
+  }
+  .frame{ position:absolute; inset:0; padding:.62in .7in .55in 1.12in; display:flex; flex-direction:column; }
+
+  /* atoms */
+  .mono{ font-family:"IBM Plex Mono", monospace; letter-spacing:.18em; text-transform:uppercase; }
+  .display{ font-family:"Alfa Slab One", serif; font-weight:400; letter-spacing:-.005em; line-height:.9; text-transform:uppercase; color:var(--ink); }
+  .display .amp{ color:var(--amber); }
+
+  .topbar{ display:flex; align-items:center; gap:10px; }
+  .tag{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+    padding:7px 12px; border:1.5px solid var(--ink); color:var(--ink); line-height:1;
+  }
+  .tag.fill-ink{ background:var(--ink); border-color:var(--ink); color:var(--cream); }
+  .tag .accent{ color:var(--amber); }
+  .topbar .grow{ flex:1; height:1.5px; background:var(--ink); }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--ink); color:var(--cream);
+    padding:7px 12px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  }
+  .eyebrow .num{ color:var(--amber); }
+
+  /* ============ PAGE 1 ============ */
+  .p1-hero{ margin-top:16px; }
+  .p1-hero .kicker{
+    display:flex; align-items:center; gap:14px;
+    font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--ink);
+    margin-bottom:16px;
+  }
+  .p1-hero .kicker .line{ flex:1; height:1.5px; background:var(--ink); }
+  .p1-hero .display{ font-size:70px; line-height:.9; }
+
+  /* Hero photo + story */
+  .meet{
+    margin-top:14px;
+    display:grid; grid-template-columns: 3.5in 1fr; gap:.36in;
+    align-items:stretch;
+  }
+  .photo{
+    position:relative; overflow:hidden;
+    background:#222;
+    border:1.5px solid var(--ink);
+  }
+  .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .photo .photo-cap{
+    position:absolute; left:10px; bottom:10px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:8.5px; letter-spacing:.18em; text-transform:uppercase;
+    background:var(--ink); color:var(--cream);
+    padding:5px 8px;
+  }
+  .photo .photo-stamp{
+    position:absolute; right:10px; top:10px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:8.5px; letter-spacing:.18em; text-transform:uppercase;
+    background:var(--amber); color:#1a1306;
+    padding:5px 8px;
+  }
+  .hero-photo{ height:3.55in; }
+
+  .story{ display:flex; flex-direction:column; }
+  .story h2{
+    font-family:"Alfa Slab One", serif; font-weight:400; font-size:25px; line-height:1.02; text-transform:uppercase;
+    margin:0 0 12px;
+  }
+  .story p{
+    margin:0 0 11px;
+    font-size:12px; line-height:1.6; color:var(--ink-2);
+  }
+  .story p strong{ color:var(--ink); }
+  .story .grow{ flex:1; }
+
+  /* The $4M -> $15M payoff */
+  .payoff{
+    margin-top:18px; margin-bottom:18px;
+    display:flex; align-items:baseline; gap:14px;
+  }
+  .payoff .from{
+    font-family:"Alfa Slab One", serif; font-size:30px; line-height:1; color:var(--ink);
+  }
+  .payoff .arrow{
+    font-family:"IBM Plex Mono", monospace; font-size:22px; color:var(--amber); font-weight:600;
+  }
+  .payoff .to{
+    font-family:"Alfa Slab One", serif; font-size:46px; line-height:1; color:var(--amber);
+  }
+  .payoff .lbl{
+    margin-left:auto; max-width:1.5in; text-align:right;
+    font-family:"IBM Plex Mono", monospace; font-size:8.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-2);
+    line-height:1.4;
+  }
+
+  /* The wall — dark insight band */
+  .wall{
+    margin-top:22px;
+    background:var(--ink); color:var(--cream);
+    padding:24px 28px;
+    display:grid; grid-template-columns: 2.0in 1fr; gap:26px; align-items:center;
+  }
+  .wall .lhs .eb{
+    display:inline-block;
+    font-family:"IBM Plex Mono", monospace; font-size:9px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--amber); margin-bottom:8px;
+  }
+  .wall .lhs h3{
+    margin:0;
+    font-family:"Alfa Slab One", serif; font-weight:400; font-size:30px; line-height:.95; text-transform:uppercase; color:var(--cream);
+  }
+  .wall .lhs h3 .amp{ color:var(--amber); }
+  .wall .rhs{ font-size:12px; line-height:1.65; color:#e6dcc1; }
+  .wall .rhs strong{ color:var(--amber); font-weight:600; }
+  .wall .rhs p{ margin:0 0 9px; }
+  .wall .rhs p:last-child{ margin-bottom:0; }
+
+  .p1-foot{
+    margin-top:auto; padding-top:18px;
+    display:flex; justify-content:flex-end; align-items:center;
+    font-family:"IBM Plex Mono", monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink);
+  }
+  .p1-foot b{ color:var(--amber-2); font-weight:600; }
+
+  /* ============ PAGE 2 ============ */
+  .page:last-of-type .frame{ padding-top:.4in; }
+  .p2-top{
+    margin-top:6px;
+    display:grid; grid-template-columns: 2.5in 1fr; gap:.4in;
+    align-items:end;
+  }
+  .p2-top .photo{ height:2.35in; }
+  .p2-title .eyebrow{ margin-bottom:14px; }
+  .p2-title h2.display{ font-size:46px; line-height:.92; margin:0 0 12px; }
+  .p2-title .intro{
+    font-size:12px; line-height:1.6; color:var(--ink-2);
+    margin:0; max-width:4.2in;
+  }
+  .p2-title .intro strong{ color:var(--ink); }
+
+  /* Story chapters */
+  .story-block{
+    margin-top:22px;
+    border-top:2.5px solid var(--ink);
+    padding-top:14px;
+  }
+  .chapter{
+    display:grid; grid-template-columns: .8in 1fr;
+    gap:18px; align-items:start;
+    padding:11px 0 13px;
+    border-bottom:1px solid rgba(17,51,47,.35);
+  }
+  .chapter:last-child{ border-bottom:none; padding-bottom:4px; }
+  .chapter .cn{
+    font-family:"Alfa Slab One", serif; font-size:34px; line-height:.9; color:var(--amber);
+  }
+  .chapter h3{
+    margin:0 0 6px;
+    font-family:"Alfa Slab One", serif; font-weight:400; font-size:19px; line-height:1.05; text-transform:uppercase;
+    color:var(--ink);
+  }
+  .chapter p{
+    margin:0;
+    font-size:12px; line-height:1.62; color:var(--ink-2);
+  }
+  .chapter p b{ color:var(--ink); }
+
+  /* Closing row: photo + tighter pull-quote */
+  .closer{
+    margin-top:18px;
+    display:grid; grid-template-columns: 2.45in 1fr; gap:.32in;
+    align-items:stretch;
+  }
+  .closer .photo{ min-height:1.5in; }
+  .pullquote{
+    background:var(--ink); color:var(--cream);
+    padding:22px 26px;
+    display:grid; grid-template-columns: auto 1fr; gap:18px; align-items:center;
+  }
+  .pullquote .mark{
+    font-family:"Alfa Slab One", serif; font-size:54px; line-height:.7; color:var(--amber);
+    align-self:start;
+  }
+  .pullquote .q{
+    font-family:"Alfa Slab One", serif; font-size:21px; line-height:1.14; text-transform:uppercase; color:var(--cream);
+  }
+  .pullquote .q .amp{ color:var(--amber); }
+
+  /* quiet footer */
+  .p2-foot{
+    margin-top:auto; padding-top:18px;
+    display:flex; justify-content:flex-end; align-items:center;
+    font-family:"IBM Plex Mono", monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink);
+  }
+  .p2-foot b{ color:var(--amber-2); font-weight:600; }
+
+  /* Print */
+  @page{ size: letter; margin:0; }
+  @media print{
+    html,body{ background:#fff; }
+    .page{ margin:0; box-shadow:none; }
+  }
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#11332f"/>
+    <rect x="0" y="0" width="6" height="100" fill="#e8a635"/>
+    <text x="50" y="62" font-family="Georgia, serif" font-size="34" font-weight="900" text-anchor="middle" fill="#f1e8d2">JMCG</text>
+    <text x="50" y="82" font-family="monospace" font-size="6" letter-spacing="2" text-anchor="middle" fill="#d99423">ABOUT US</text>
+  </svg>
+</template>
+
+<!-- ============================== PAGE 1 ============================== -->
+<section class="page" data-screen-label="01 The Shop">
+  <div class="rail"></div>
+
+  <div class="frame">
+    <div class="topbar">
+      <span class="tag fill-ink">JMCG</span>
+      <span class="tag">OUR STORY</span>
+      <span class="grow"></span>
+    </div>
+
+    <div class="p1-hero">
+      <div class="kicker">
+        <span>THE STORY OF HOW WE BUILT IT</span>
+        <span class="line"></span>
+      </div>
+      <h1 class="display">
+        TAKING OUR<br/>
+        FAMILY SHOP<br/>
+        TO <span class="amp">$15M.</span>
+      </h1>
+    </div>
+
+    <!-- Hero photo + origin story -->
+    <div class="meet">
+      <div class="photo hero-photo">
+        <img src="img/operator-furnace.jpg" alt="In the field, in company gear, working on a furnace" />
+        <span class="photo-stamp">IN THE FIELD</span>
+        <span class="photo-cap">FAMILY HVAC · ON THE JOB</span>
+      </div>
+      <div class="story">
+        <h2>Where it started.</h2>
+        <p>Our family started our HVAC business in <strong>Martinsburg, West Virginia.</strong> They kept it small — a tight crew, honest work, one customer at a time.</p>
+        <p>I grew up in the trucks, ran install jobs every summer, then joined the marketing side. We got <strong>good at bringing in calls</strong> — Google Ads, LSAs, SEO, the whole stack.</p>
+        <p>But more calls were not enough.</p>
+
+        <div class="grow"></div>
+        <div class="payoff">
+          <span class="from">$4M</span>
+          <span class="arrow">→</span>
+          <span class="to">$15M</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- The wall -->
+    <div class="wall">
+      <div class="lhs">
+        <span class="eb">CHAPTER TWO</span>
+        <h3>WE HIT A <span class="amp">WALL.</span></h3>
+      </div>
+      <div class="rhs">
+        <p>You can book all the calls in the world. If your systems are weak, <strong>the money still leaks out.</strong></p>
+        <p>So we did what most shops don't: we studied the biggest HVAC companies in the country — the $20M and $40M shops — and built the same systems for ours. We rebuilt the call center, service, and sales, tracked the right numbers, and trained our managers to hit them.</p>
+      </div>
+    </div>
+
+    <div class="p1-foot">
+      <span>PAGE <b>01</b> / 02</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================== PAGE 2 ============================== -->
+<section class="page" data-screen-label="02 Why JMCG Exists">
+  <div class="rail"></div>
+
+  <div class="frame">
+    <!-- Title + photo -->
+    <div class="p2-top">
+      <div class="photo">
+        <img src="img/writing.jpg" alt="Writing out the plan at the table" />
+        <span class="photo-stamp">THE PLAYBOOK</span>
+        <span class="photo-cap">BUILDING THE PLAN</span>
+      </div>
+      <div class="p2-title">
+        <span class="eyebrow"><span class="num">·</span> WHY WE'RE HERE</span>
+        <h2 class="display">WHY JMCG<br/><span class="amp">EXISTS.</span></h2>
+        <p class="intro">After years inside our own shop, I started talking with other HVAC and plumbing owners — and they had <strong>the same problems we did.</strong></p>
+      </div>
+    </div>
+
+    <!-- Chapters -->
+    <div class="story-block">
+      <div class="chapter">
+        <div class="cn">01</div>
+        <div>
+          <h3>The pattern was always the same.</h3>
+          <p>The owners who grew weren't the ones who bought more leads. Every time, they were the ones whose <b>operations didn't leak</b> — whose calls got answered, whose jobs got followed up, whose numbers were on the wall.</p>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="cn">02</div>
+        <div>
+          <h3>Marketing was never the whole answer.</h3>
+          <p>Marketing matters. But if your service department, your CSRs, your sales process, and your KPIs aren't tight, <b>more leads just make the leaks worse.</b> The growth was never about feeding the top of the funnel — it was about closing the gaps underneath it.</p>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="cn">03</div>
+        <div>
+          <h3>What JMCG does now.</h3>
+          <p>We help HVAC and plumbing owners in the <b>$1M–$15M range</b> install the same systems that scaled our shop — the right departments, the right KPIs, the right training. Whether you want a legacy to pass to your kids or a business to sell down the road, <b>the foundation is the same.</b></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Closing: photo + quote -->
+    <div class="closer">
+      <div class="photo">
+        <img src="img/whiteboard.jpg" alt="Tracking the daily numbers on the KPI board" />
+        <span class="photo-stamp">DAILY KPIS</span>
+        <span class="photo-cap">TRACKING THE NUMBERS</span>
+      </div>
+      <div class="pullquote">
+        <div class="mark">"</div>
+        <div class="q">YOU CAN'T SCALE WHAT YOU CAN'T <span class="amp">MEASURE.</span> YOU CAN'T GROW WHAT'S <span class="amp">LEAKING.</span></div>
+      </div>
+    </div>
+    <div class="p2-foot">
+      <span>PAGE <b>02</b> / 02</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
