@@ -2,6 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P2TGD9T7');</script>
+  <!-- End Google Tag Manager -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Free HVAC Business Valuation | JMCG</title>
   <meta name="description" content="Find out what your HVAC or plumbing business is really worth. Get a free business valuation built by operators who've scaled to $15M+." />
@@ -125,6 +134,9 @@
     .micro .sep { color: var(--amber); }
     .band-ink .micro { color: #9aa9a2; }
 
+    /* mobile-only copy helpers (activated in the ≤680px block) */
+    .m-only, .m-br { display: none; }
+
     /* ---- scroll reveal ---- */
     @keyframes revealUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -162,6 +174,7 @@
       font-weight: 600;
       font-size: 14px;
     }
+    .announce .atxt b { font-weight: 600; }
     .announce .aarrow {
       font-family: "IBM Plex Mono", monospace;
       font-weight: 700;
@@ -235,6 +248,57 @@
       font-family: "IBM Plex Mono", monospace;
     }
     header.site .hdr-cta:hover { transform: translateY(-1px); }
+
+    /* mobile hamburger + slide-down menu (shown ≤680px) */
+    .hamburger {
+      display: none;
+      margin-left: auto;
+      width: 44px;
+      height: 44px;
+      flex: none;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: transform .25s ease, opacity .2s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+    .navmenu {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      background: var(--ink-deep);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+    }
+    .navmenu.open { max-height: 400px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .navmenu a {
+      display: block;
+      padding: 16px 20px;
+      text-decoration: none;
+      color: var(--cream);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .navmenu a.cta { color: var(--amber); }
 
     /* ---- HERO ---- */
     .hero {
@@ -829,20 +893,220 @@
       .rev-card { flex: 1 1 auto; height: auto; }
       .rev-controls { display: none; }
       header.site nav.links { display: none; }
+      header.site .hdr-cta { margin-left: auto; }
       .reviews,
       .howval,
       .about,
       .why { padding: 74px 0 78px; }
       .worth { padding: 84px 0 92px; }
     }
+
+    /* ============================================================
+       MOBILE (≤680px) — dedicated mobile design
+       (ported from project/JMCG Mobile.html; desktop untouched)
+       ============================================================ */
+    @media (max-width: 680px) {
+      .wrap { padding: 0 22px; }
+      .m-only { display: inline; }
+      .m-br { display: inline; }
+      .desk-only { display: none; }
+      .m-nowrap { white-space: nowrap; }
+      .eyebrow::before { display: none; }
+
+      /* full-width pill CTAs everywhere */
+      .btn,
+      .btn.lg {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        white-space: normal;
+        font-size: 18px;
+        padding: 21px 22px;
+      }
+
+      /* announce: left-aligned, bold lead sentence, arrow pushed right */
+      .announce {
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+        gap: 11px;
+        padding: 13px 18px 14px;
+      }
+      .announce .newpill { margin-top: 1px; font-size: 10px; letter-spacing: .14em; padding: 5px 9px; }
+      .announce .atxt { font-size: 13.5px; line-height: 1.32; }
+      .announce .atxt b { font-weight: 700; }
+      .announce .aarrow { margin-left: auto; align-self: center; flex: none; }
+
+      /* header: logo + hamburger */
+      header.site .wrap { height: 60px; padding: 0 18px; gap: 16px; }
+      header.site .hdr-cta { display: none; }
+      .logo .mark { font-size: 12px; padding: 7px 10px; }
+      .hamburger { display: flex; }
+      .navmenu { display: block; }
+
+      /* hero: light cream, centered, no photo / eyebrow / cred */
+      .hero { background: var(--cream); color: var(--ink); }
+      .hero::before,
+      .hero::after { display: none; }
+      .hero .wrap { display: block; padding: 26px 22px 0; }
+      .hero-copy { text-align: center; }
+      .hero-copy .eyebrow { display: none; }
+      .hero h1.display {
+        color: var(--ink);
+        font-size: clamp(36px, 11vw, 50px);
+        line-height: .94;
+        letter-spacing: -.01em;
+        margin: 0 0 18px;
+      }
+      .hero h1 .amp { color: var(--amber-2); }
+      .hero .sub {
+        color: var(--ink-2);
+        font-size: 17px;
+        line-height: 1.52;
+        max-width: 34ch;
+        margin: 0 auto 12px;
+      }
+      .hero .sub strong { color: var(--ink); }
+      .hero .cta-line { display: block; }
+      .hero .cta-stack { display: flex; width: 100%; align-items: stretch; }
+      .hero .micro { margin-top: 16px; justify-content: center; color: var(--muted); }
+      .hero .micro .sep { color: var(--amber-2); }
+      .hero .cred { display: none; }
+      .hero-visual { display: none; }
+
+      /* reviews: continuous cream band, small heading, fading single card + dots */
+      .reviews { padding: 22px 0 46px; }
+      .reviews .head { margin: 0 auto 18px; }
+      .reviews .eyebrow,
+      .reviews .trust { display: none; }
+      .reviews h2.display { font-size: clamp(18px, 5.4vw, 26px); line-height: 1.04; margin: 0; }
+      .reviews h2.display .amp { color: var(--amber-2); }
+      .rev-viewport { overflow: visible; }
+      .rev-track { position: relative; flex-direction: column; gap: 0; min-height: 248px; }
+      .rev-card {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        min-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition: opacity .5s ease, transform .5s ease;
+        padding: 22px 22px 20px;
+        box-shadow: 7px 7px 0 rgba(17,51,47,.09);
+      }
+      .rev-card.active {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+      }
+      .rev-qmark { font-size: 44px; }
+      .rev-stars { font-size: 12.5px; letter-spacing: 2.5px; margin-bottom: 12px; }
+      .rev-text { font-size: 15px; line-height: 1.5; margin-bottom: 18px; }
+      .rev-avatar { width: 42px; height: 42px; font-size: 16px; }
+      .rev-name { font-size: 15px; }
+      .rev-controls { display: flex; margin-top: 20px; }
+      .rev-arrow { display: none; }
+
+      /* how it works: left-aligned, borderless numbered rows */
+      .howval { padding: 60px 0 64px; }
+      .howval .head { text-align: left; max-width: none; margin: 0 0 34px; }
+      .howval .eyebrow { justify-content: flex-start; margin-bottom: 16px; }
+      .band-ink .eyebrow { color: #c8bfa3; }
+      .howval h2.display { font-size: clamp(30px, 9vw, 40px); line-height: .98; }
+      .vsteps { display: block; border: none; }
+      .vstep {
+        display: flex;
+        gap: 16px;
+        padding: 22px 0;
+        border-right: none;
+        border-bottom: none;
+        border-top: 1.5px solid rgba(255,255,255,.12);
+      }
+      .vstep:first-child { border-top: none; padding-top: 2px; }
+      .vstep .n { flex: none; width: 40px; font-size: 30px; line-height: .9; }
+      .vstep .c { flex: 1; min-width: 0; }
+      .vstep h3 { margin: 0 0 7px; font-size: 18px; line-height: 1.08; }
+      .vstep p { font-size: 15px; line-height: 1.55; }
+      .howval .ctarow { margin-top: 32px; gap: 16px; align-items: stretch; }
+      .howval .ctarow .micro { justify-content: center; }
+
+      /* about: heading → photo → story → CTA */
+      .about { padding: 30px 0 44px; border-top: 1.5px solid rgba(17,51,47,.1); }
+      .about .grid { display: flex; flex-direction: column; gap: 0; }
+      .about .copy { display: contents; }
+      .about .copy .eyebrow { order: 1; margin-bottom: 16px; }
+      .about .copy h2.display {
+        order: 2;
+        font-size: clamp(30px, 9vw, 40px);
+        line-height: .96;
+        margin: 0 0 26px;
+        max-width: 13ch;
+      }
+      .about .photo { order: 3; margin: 0 0 28px; box-shadow: 8px 8px 0 rgba(17,51,47,.1); }
+      .about .photo img { height: 300px; object-position: center 26%; }
+      .about .photo .stamp { right: 12px; top: 12px; font-size: 9px; padding: 7px 10px; }
+      .about .photo .cap { font-size: 9px; padding: 7px 11px; }
+      .about .story { order: 4; }
+      .about .story p { font-size: 16px; line-height: 1.62; margin: 0 0 16px; }
+      .about .about-cta {
+        order: 5;
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1.5px solid rgba(17,51,47,.14);
+      }
+
+      /* why it matters: left-aligned, tighter cards, stacked bridge */
+      .why { padding: 58px 0 34px; }
+      .why .head { text-align: left; max-width: none; margin: 0 0 28px; }
+      .why .eyebrow { justify-content: flex-start; margin-bottom: 16px; }
+      .why h2.display { font-size: clamp(30px, 9vw, 40px); line-height: .98; }
+      .why-paths { gap: 14px; }
+      .why-path { padding: 22px 20px; }
+      .why-path .tag { font-size: 10px; margin-bottom: 12px; }
+      .why-path h3 { font-size: 20px; margin: 0 0 9px; }
+      .why-path p { font-size: 14.5px; line-height: 1.56; }
+      .why-bridge { display: block; margin-top: 24px; padding: 24px 22px; }
+      .why-bridge .lbl { display: block; font-size: 10px; margin-bottom: 11px; }
+      .why-bridge p { min-width: 0; font-size: 18px; line-height: 1.42; }
+
+      /* final CTA: left-aligned, simple arrow rows */
+      .worth { padding: 34px 0 70px; text-align: left; }
+      .worth .eyebrow { justify-content: flex-start; margin-bottom: 16px; }
+      .worth h2.display { font-size: clamp(30px, 9vw, 40px); line-height: .98; margin: 0 0 18px; }
+      .worth .lead { font-size: 16px; max-width: none; margin: 0 0 26px; }
+      .worth-list { display: block; border: none; margin: 0 0 30px; }
+      .worth-list li {
+        padding: 15px 0 15px 30px;
+        border-right: none;
+        border-bottom: none;
+        border-top: 1.5px solid rgba(255,255,255,.12);
+        font-size: 15.5px;
+      }
+      .worth-list li::before { left: 0; top: 15px; }
+      .worth .cta-wrap { gap: 16px; align-items: stretch; }
+      .worth .cta-wrap .micro { justify-content: center; }
+
+      /* footer: mark only */
+      footer { padding: 30px 0; }
+      footer .tagline { display: none; }
+    }
   </style>
 </head>
 <body>
 
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2TGD9T7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <!-- ANNOUNCEMENT BAR -->
 <a class="announce" href="#worth">
   <span class="newpill">New</span>
-  <span class="atxt">What's your HVAC or plumbing business worth? Free 2-min valuation.</span>
+  <span class="atxt"><b>What's your HVAC or plumbing business worth?</b> Free 2-min valuation.</span>
   <span class="aarrow">→</span>
 </a>
 
@@ -859,7 +1123,17 @@
       <a href="#why-it-matters">Why It Matters</a>
     </nav>
     <a class="hdr-cta" href="#worth">Get My Free Valuation</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="navmenu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+  <nav class="navmenu" id="navmenu" aria-label="Mobile navigation">
+    <a href="#partners">Reviews</a>
+    <a href="#how">How It Works</a>
+    <a href="#about">About</a>
+    <a href="#why-it-matters">Why It Matters</a>
+    <a class="cta" href="#worth">Get My Free Valuation &rarr;</a>
+  </nav>
 </header>
 
 <!-- HERO -->
@@ -867,8 +1141,8 @@
   <div class="wrap">
     <div class="hero-copy">
       <span class="eyebrow reveal">For HVAC &amp; Plumbing Owners</span>
-      <h1 class="display reveal">What's Your HVAC Business <span class="amp">Worth Right Now?</span></h1>
-      <p class="sub reveal">We've scaled our family HVAC shop to <strong>$15M+</strong>. Get a FREE business valuation with diagnostics, built by operators who've actually done it.</p>
+      <h1 class="display reveal">What's Your HVAC Business<span class="m-only">.</span> <span class="amp">Worth <span class="m-nowrap">Right Now?</span></span></h1>
+      <p class="sub reveal">We've scaled our family HVAC shop to <strong>$15M+</strong>. Get a FREE business valuation with diagnostics<span class="desk-only">, built by operators who've actually done it</span>.</p>
       <div class="cta-line reveal">
         <div class="cta-stack">
           <a class="btn lg" href="#worth">Get My Free Valuation</a>
@@ -901,13 +1175,13 @@
   <div class="wrap">
     <div class="head reveal">
       <span class="eyebrow">What Owners Say</span>
-      <h2 class="display">Hear From Some Of Our <span class="amp">Partners.</span></h2>
+      <h2 class="display">Hear From Some <br class="m-br" />Of Our <span class="amp">Partners.</span></h2>
       <div class="trust"><span>Operators we've helped grow</span></div>
     </div>
 
     <div class="rev-viewport reveal" role="region" aria-label="Rotating partner reviews">
       <div class="rev-track" id="revTrack">
-        <article class="rev-card partner">
+        <article class="rev-card partner active">
           <div class="rev-qmark" aria-hidden="true">&ldquo;</div>
           <div class="rev-stars" aria-label="5 stars">★★★★★</div>
           <p class="rev-text">I&rsquo;ve been with JMCG for over a year now, and the team has been <b>awesome every step of the way.</b> They really helped us tighten up execution and actually get things done.</p>
@@ -972,23 +1246,29 @@
   <div class="wrap">
     <div class="head reveal">
       <span class="eyebrow">How It Works</span>
-      <h2 class="display">Your Valuation, In <span class="amp">3 Steps.</span></h2>
+      <h2 class="display">Your Valuation,<br class="m-br" /> In <span class="amp">3 Steps.</span></h2>
     </div>
     <div class="vsteps">
       <div class="vstep reveal">
         <div class="n" aria-hidden="true">1</div>
-        <h3>Tell Us About Your Shop</h3>
-        <p>A <strong>2-minute intake</strong>: revenue, team size, the basics. No spreadsheets to dig up.</p>
+        <div class="c">
+          <h3>Tell Us About Your Shop</h3>
+          <p>A <strong>2-minute intake</strong>: revenue, team size, the basics. No spreadsheets to dig up.</p>
+        </div>
       </div>
       <div class="vstep reveal">
         <div class="n" aria-hidden="true">2</div>
-        <h3>We Run Your Numbers</h3>
-        <p>We benchmark your revenue, close rate, average ticket and departments against shops we&rsquo;ve actually scaled, then use <strong>AI to run your numbers</strong> so your valuation comes back immediately.</p>
+        <div class="c">
+          <h3>We Run Your Numbers</h3>
+          <p>We benchmark your revenue, close rate, average ticket and departments against shops we&rsquo;ve actually scaled, then use <strong>AI to run your numbers</strong> so your valuation comes back immediately.</p>
+        </div>
       </div>
       <div class="vstep reveal">
         <div class="n" aria-hidden="true">3</div>
-        <h3>You Get Your Estimated Valuation Immediately</h3>
-        <p>A clear valuation of what your business is worth <strong>today</strong>, and exactly where the value is hiding.</p>
+        <div class="c">
+          <h3>You Get Your Estimated Valuation Immediately</h3>
+          <p>A clear valuation of what your business is worth <strong>today</strong>, and exactly where the value is hiding.</p>
+        </div>
       </div>
     </div>
     <div class="ctarow reveal">
@@ -1076,7 +1356,7 @@
   <div class="wrap">
     <span class="mark">JMCG</span>
     <span class="spacer"></span>
-    <span>Free HVAC &amp; Plumbing Business Valuation</span>
+    <span class="tagline">Free HVAC &amp; Plumbing Business Valuation</span>
   </div>
 </footer>
 
@@ -1096,22 +1376,68 @@
     els.forEach(function (e) { io.observe(e); });
   })();
 
-  // Reviews carousel — 3 visible, shifts one at a time, desktop only
+  // mobile nav (hamburger)
+  (function () {
+    var btn  = document.getElementById('hamburger');
+    var menu = document.getElementById('navmenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+
+  // Reviews carousel — desktop (>900px): 3 visible, slides one at a time;
+  // mobile (≤680px): one card at a time, cross-fading, dots only;
+  // tablet (681–900px): all cards stacked, no controls.
   (function () {
     var viewport = document.querySelector('.rev-viewport');
     var track    = document.getElementById('revTrack');
     var dotsWrap = document.getElementById('revDots');
     var prevBtn  = document.getElementById('revPrev');
     var nextBtn  = document.getElementById('revNext');
-    if (!viewport || !track) return;
+    if (!viewport || !track || !dotsWrap) return;
 
-    var VISIBLE = 3, GAP = 26, DELAY = 4200, DUR = 620;
     var originals = Array.prototype.slice.call(track.children);
     var count = originals.length;
-    var clones = [], index = 0, timer = null, animating = false, built = false, raf = null;
+    var VISIBLE = 3, GAP = 26, DUR = 620;
 
-    function isDesktop() { return window.innerWidth > 900; }
+    function mode() {
+      var w = window.innerWidth;
+      return w > 900 ? 'desktop' : (w > 680 ? 'tablet' : 'mobile');
+    }
+
+    function buildDots(onSelect) {
+      dotsWrap.innerHTML = '';
+      originals.forEach(function (_, n) {
+        var b = document.createElement('button');
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-label', 'Go to review ' + (n + 1));
+        b.addEventListener('click', function () { onSelect(n); });
+        dotsWrap.appendChild(b);
+      });
+    }
+    function paintDots(active) {
+      Array.prototype.forEach.call(dotsWrap.children, function (d, n) {
+        d.classList.toggle('active', n === active);
+        d.setAttribute('aria-selected', n === active ? 'true' : 'false');
+      });
+    }
+
+    /* ---- desktop: clone-based sliding carousel ---- */
+    var dBuilt = false, dClones = [], dIndex = 0, dTimer = null, dRaf = null, dAnimating = false;
+    var D_DELAY = 4200;
+
     function cardStep() { return originals[0].offsetWidth + GAP; }
+    function dActive() { return ((dIndex % count) + count) % count; }
 
     function equalize() {
       var all = Array.prototype.slice.call(track.children);
@@ -1121,92 +1447,117 @@
       all.forEach(function (c) { c.style.minHeight = max + 'px'; });
     }
 
-    function setDot() {
-      var active = ((index % count) + count) % count;
-      Array.prototype.forEach.call(dotsWrap.children, function (d, n) {
-        d.classList.toggle('active', n === active);
-        d.setAttribute('aria-selected', n === active ? 'true' : 'false');
-      });
-    }
-
-    function animateTo(target, cb) {
-      if (raf) cancelAnimationFrame(raf);
+    function dAnimateTo(target, cb) {
+      if (dRaf) cancelAnimationFrame(dRaf);
       var start = viewport.scrollLeft, delta = target - start, t0 = null;
       function frame(now) {
         if (t0 === null) t0 = now;
         var p = Math.min(1, (now - t0) / DUR);
         var e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
         viewport.scrollLeft = start + delta * e;
-        if (p < 1) { raf = requestAnimationFrame(frame); }
-        else { raf = null; if (cb) cb(); }
+        if (p < 1) { dRaf = requestAnimationFrame(frame); }
+        else { dRaf = null; if (cb) cb(); }
       }
-      raf = requestAnimationFrame(frame);
+      dRaf = requestAnimationFrame(frame);
     }
 
-    function go(n) {
-      if (animating) return;
-      animating = true;
-      index = n;
-      setDot();
-      animateTo(index * cardStep(), function () {
-        if (index >= count) { index -= count; viewport.scrollLeft = index * cardStep(); }
-        else if (index < 0) { index += count; viewport.scrollLeft = index * cardStep(); }
-        animating = false;
+    function dGo(n) {
+      if (dAnimating) return;
+      dAnimating = true;
+      dIndex = n;
+      paintDots(dActive());
+      dAnimateTo(dIndex * cardStep(), function () {
+        if (dIndex >= count) { dIndex -= count; viewport.scrollLeft = dIndex * cardStep(); }
+        else if (dIndex < 0) { dIndex += count; viewport.scrollLeft = dIndex * cardStep(); }
+        dAnimating = false;
       });
     }
-    function next() { go(index + 1); }
-    function prev() { go(index - 1); }
+    function dNext() { dGo(dIndex + 1); }
+    function dPrev() { dGo(dIndex - 1); }
+    function dStart() { dStop(); dTimer = setInterval(dNext, D_DELAY); }
+    function dStop()  { if (dTimer) { clearInterval(dTimer); dTimer = null; } }
 
-    function start() { stop(); timer = setInterval(next, DELAY); }
-    function stop()  { if (timer) { clearInterval(timer); timer = null; } }
-
-    function build() {
-      if (built) return;
-      built = true;
+    function dBuild() {
+      if (dBuilt) return;
+      dBuilt = true;
       for (var i = 0; i < VISIBLE; i++) {
         var c = originals[i].cloneNode(true);
         c.setAttribute('aria-hidden', 'true');
-        clones.push(c);
+        c.classList.remove('active');
+        dClones.push(c);
         track.appendChild(c);
       }
-      originals.forEach(function (_, n) {
-        var b = document.createElement('button');
-        b.setAttribute('role', 'tab');
-        b.setAttribute('aria-label', 'Go to review ' + (n + 1));
-        b.setAttribute('aria-selected', n === 0 ? 'true' : 'false');
-        b.addEventListener('click', function () {
-          if (((index % count) + count) % count !== n) go(n);
-          start();
-        });
-        dotsWrap.appendChild(b);
-      });
-      if (nextBtn) nextBtn.addEventListener('click', function () { next(); start(); });
-      if (prevBtn) prevBtn.addEventListener('click', function () { prev(); start(); });
-      viewport.addEventListener('mouseenter', stop);
-      viewport.addEventListener('mouseleave', start);
+      buildDots(function (n) { if (dActive() !== n) dGo(n); dStart(); });
     }
-
-    function teardown() {
-      stop();
-      if (raf) { cancelAnimationFrame(raf); raf = null; }
-      clones.forEach(function (c) { if (c.parentNode) c.parentNode.removeChild(c); });
-      clones = [];
+    function dTeardown() {
+      if (!dBuilt) return;
+      dBuilt = false;
+      dStop();
+      if (dRaf) { cancelAnimationFrame(dRaf); dRaf = null; }
+      dClones.forEach(function (c) { if (c.parentNode) c.parentNode.removeChild(c); });
+      dClones = [];
       dotsWrap.innerHTML = '';
-      built = false; index = 0; animating = false;
+      dIndex = 0; dAnimating = false;
       viewport.scrollLeft = 0;
       Array.prototype.slice.call(track.children).forEach(function (c) { c.style.minHeight = ''; });
     }
 
+    /* ---- mobile: single card, cross-fade ---- */
+    var mBuilt = false, mIndex = 0, mTimer = null;
+    var M_DELAY = 5500;
+
+    function mGo(n) {
+      originals[mIndex].classList.remove('active');
+      mIndex = ((n % count) + count) % count;
+      originals[mIndex].classList.add('active');
+      paintDots(mIndex);
+    }
+    function mStart() { mStop(); mTimer = setInterval(function () { mGo(mIndex + 1); }, M_DELAY); }
+    function mStop()  { if (mTimer) { clearInterval(mTimer); mTimer = null; } }
+
+    function mBuild() {
+      if (mBuilt) return;
+      mBuilt = true;
+      originals.forEach(function (c, n) { c.classList.toggle('active', n === mIndex); });
+      buildDots(function (n) { mGo(n); mStart(); });
+      paintDots(mIndex);
+      mStart();
+    }
+    function mTeardown() {
+      if (!mBuilt) return;
+      mBuilt = false;
+      mStop();
+      dotsWrap.innerHTML = '';
+    }
+
+    /* ---- shared listeners (mode-guarded, attached once) ---- */
+    if (nextBtn) nextBtn.addEventListener('click', function () { if (mode() === 'desktop') { dNext(); dStart(); } });
+    if (prevBtn) prevBtn.addEventListener('click', function () { if (mode() === 'desktop') { dPrev(); dStart(); } });
+    viewport.addEventListener('mouseenter', function () { if (mode() === 'desktop') dStop(); });
+    viewport.addEventListener('mouseleave', function () { if (mode() === 'desktop') dStart(); });
+
+    var current = null;
     function sync() {
-      if (isDesktop()) {
-        build();
+      var m = mode();
+      if (m === current) {
+        if (m === 'desktop' && !dAnimating) {
+          equalize();
+          viewport.scrollLeft = dActive() * cardStep();
+        }
+        return;
+      }
+      if (current === 'desktop') dTeardown();
+      if (current === 'mobile') mTeardown();
+      current = m;
+      if (m === 'desktop') {
+        dBuild();
         equalize();
-        index = ((index % count) + count) % count;
-        viewport.scrollLeft = index * cardStep();
-        setDot();
-        start();
-      } else {
-        teardown();
+        dIndex = dActive();
+        viewport.scrollLeft = dIndex * cardStep();
+        paintDots(dIndex);
+        dStart();
+      } else if (m === 'mobile') {
+        mBuild();
       }
     }
 
